@@ -4,11 +4,12 @@
 
 namespace rn
 {
-	Application::Application()
-		: _mainWindow{ sf::VideoMode({ 800, 600 }), "Rain" },
-        _targetFrameRate{ 60.0f }, _tickClock{}, _currentWorld{nullptr}
-	{
-	}
+    Application::Application(unsigned int windowWidth, unsigned int windowHeight, const std::string& title, std::uint32_t style)
+        : _mainWindow{ sf::VideoMode({ windowWidth, windowHeight }), title, style },
+        _targetFrameRate{ 60.0f }, _tickClock{}, _currentWorld{ nullptr }
+    {
+
+    }
 
 	void Application::Run()
 	{
@@ -65,9 +66,7 @@ namespace rn
 
     void Application::Render()
     {
-        sf::RectangleShape rect{ sf::Vector2f{100, 100} };
-        rect.setFillColor(sf::Color::Cyan);
-        _mainWindow.draw(rect);
+        _currentWorld->Render(_mainWindow);
     }
 
     void Application::Tick(float deltaTime)

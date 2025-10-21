@@ -10,8 +10,25 @@ rn::Application* GetApplication()
 namespace rn
 {
 	GameApplication::GameApplication()
+		: Application{600, 980, "Rain", sf::Style::Titlebar | sf::Style::Close}
 	{
 		weak<World> newWorld = LoadWorld<World>();
 		newWorld.lock()->SpawnActor<Actor>();
+		_destoryThis = newWorld.lock()->SpawnActor<Actor>();
+		_destoryThis.lock()->SetTexture("C:/Users/ASUS/Desktop/assets/SpaceShooterRedux/PNG/playerShip2_orange.png");
+		_counter = 0;
+	}
+
+	void GameApplication::Tick(float deltaTime)
+	{
+		_counter += deltaTime;
+
+		if (_counter > 2.0f)
+		{
+			if (!_destoryThis.expired())
+			{
+				_destoryThis.lock()->Destroy();
+			}
+		}
 	}
 }

@@ -32,12 +32,33 @@ namespace rn
 		}
 		_pendingActors.clear();
 
-		for (shared<Actor> actor : _actors)
+		/*for (shared<Actor> actor : _actors)
 		{
 			actor->Tick(deltaTime);
+		}*/
+
+		for (auto it = _actors.begin(); it != _actors.end();)
+		{
+			if (it->get()->IsPendingDestroy())
+			{
+				it = _actors.erase(it);
+			}
+			else
+			{
+				it->get()->TickInternal(deltaTime);
+				++it;
+			}
 		}
 
 		Tick(deltaTime);
+	}
+
+	void World::Render(sf::RenderWindow& window)
+	{
+		for (auto& actor : _actors)
+		{
+			actor->Render(window);
+		}
 	}
 
 	void World::BeginPlay()

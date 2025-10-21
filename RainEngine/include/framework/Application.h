@@ -10,7 +10,7 @@ namespace rn
 	class Application
 	{
 	public:
-		Application();
+		Application(unsigned int windowWidth, unsigned int windowHeight, const std::string& title, std::uint32_t style);
 		
 		void Run();
 
