@@ -1,6 +1,7 @@
 #include "gameFramework/GameApplication.h"
 #include "framework/World.h"
 #include "framework/Actor.h"
+#include "config.h"
 
 rn::Application* GetApplication()
 {
@@ -15,7 +16,7 @@ namespace rn
 		weak<World> newWorld = LoadWorld<World>();
 		newWorld.lock()->SpawnActor<Actor>();
 		_destoryThis = newWorld.lock()->SpawnActor<Actor>();
-		_destoryThis.lock()->SetTexture("C:/Users/ASUS/Desktop/assets/SpaceShooterRedux/PNG/playerShip2_orange.png");
+		_destoryThis.lock()->SetTexture(GetResourceDirectory() + "SpaceShooterRedux/PNG/playerShip2_blue.png");
 		_counter = 0;
 	}
 

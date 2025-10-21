@@ -32,11 +32,6 @@ namespace rn
 		}
 		_pendingActors.clear();
 
-		/*for (shared<Actor> actor : _actors)
-		{
-			actor->Tick(deltaTime);
-		}*/
-
 		for (auto it = _actors.begin(); it != _actors.end();)
 		{
 			if (it->get()->IsPendingDestroy())

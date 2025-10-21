@@ -22,3 +22,20 @@ function(CopyLibDirToTarget LIB_NAME TARGET_NAME)
 endfunction()
 
 CopyLibDirToTarget(${RAIN_ENGINE_TARGET_NAME} ${RAIN_GAME_TARGET_NAME})
+
+set(RESOURCES_FOLDER_NAME "assets")
+set(RESOURCES_SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/${RESOURCES_FOLDER_NAME}")
+
+add_custom_command(
+    TARGET ${RAIN_GAME_TARGET_NAME}
+    POST_BUILD
+    COMMAND
+    ${CMAKE_COMMAND} -E copy_directory
+    ${RESOURCES_SRC_DIR}
+    $<TARGET_FILE_DIR:${RAIN_GAME_TARGET_NAME}>/${RESOURCES_FOLDER_NAME}
+)
+
+configure_file(
+    "config.h.in"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include/config.h" ESCAPE_QUOTES
+)
