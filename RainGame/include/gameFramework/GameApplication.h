@@ -6,6 +6,7 @@ namespace rn
 	class GameApplication : public Application
 	{
 	public:
+		GameApplication();
 
 	private:
 

@@ -1,4 +1,6 @@
 #include "gameFramework/GameApplication.h"
+#include "framework/World.h"
+#include "framework/Actor.h"
 
 rn::Application* GetApplication()
 {
@@ -7,5 +9,9 @@ rn::Application* GetApplication()
 
 namespace rn
 {
-
+	GameApplication::GameApplication()
+	{
+		weak<World> newWorld = LoadWorld<World>();
+		newWorld.lock()->SpawnActor<Actor>();
+	}
 }

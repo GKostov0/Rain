@@ -1,11 +1,12 @@
-#include <iostream>
 #include "framework/Application.h"
+#include "framework/Core.h"
+#include <framework/World.h>
 
 namespace rn
 {
 	Application::Application()
 		: _mainWindow{ sf::VideoMode({ 800, 600 }), "Rain" },
-        _targetFrameRate{ 60.0f }, _tickClock{}
+        _targetFrameRate{ 60.0f }, _tickClock{}, _currentWorld{nullptr}
 	{
 	}
 
@@ -39,14 +40,18 @@ namespace rn
                 TickInternal(targetDeltaTime);
                 RenderInternal();
             }
-
-            std::cout << "Ticking at framerate: " << 1.0f / frameDeltaTime << std::endl;
         }
 	}
 
     void Application::TickInternal(float deltaTime)
     {
         Tick(deltaTime);
+
+        if (_currentWorld)
+        {
+            _currentWorld->BeginPlayInternal();
+            _currentWorld->TickInternal(deltaTime);
+        }
     }
 
     void Application::RenderInternal()
