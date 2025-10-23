@@ -10,5 +10,5 @@ int main()
 
 	delete app;
 
-	std::cin.get();
+	//std::cin.get();
 }

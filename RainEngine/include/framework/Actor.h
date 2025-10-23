@@ -17,9 +17,24 @@ namespace rn
 		virtual void BeginPlay();
 
 		void TickInternal(float deltaTime);
-		void Tick(float deltaTime);
+		virtual void Tick(float deltaTime);
 		void SetTexture(const std::string& path);
 		void Render(sf::RenderWindow& window);
+
+		void SetActorLocation(const sf::Vector2f& newLocation);
+		void AddActorLocationOffset(const sf::Vector2f& offsetAmount);
+
+		void SetActorRotation(float newRotation);
+		void AddActorRotationOffset(float offsetAmount);
+
+		sf::Vector2f GetActorForwardDirection() const;
+		sf::Vector2f GetActorRightDirection() const;
+
+		sf::Vector2f GetActorLocation() const;
+		float GetActorRotation() const;
+
+	private:
+		void CenterPivot();
 
 	private:
 		World* _owner;

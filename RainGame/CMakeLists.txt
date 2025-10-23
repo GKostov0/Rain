@@ -1,6 +1,12 @@
 add_executable(${RAIN_GAME_TARGET_NAME}
     ${CMAKE_CURRENT_SOURCE_DIR}/include/gameFramework/GameApplication.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/gameFramework/GameApplication.cpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/SpaceShip/SpaceShip.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/SpaceShip/SpaceShip.cpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Player/PlayerSpaceShip.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Player/PlayerSpaceShip.cpp
 )
 
 target_include_directories(${RAIN_GAME_TARGET_NAME} PUBLIC

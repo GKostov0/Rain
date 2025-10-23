@@ -1,7 +1,7 @@
 #include "framework/Actor.h"
 #include "framework/Core.h"
-
 #include "framework/AssetManager.h"
+#include "framework/MathUtility.h"
 
 namespace rn
 {
@@ -52,6 +52,7 @@ namespace rn
 		int textureHeight = _texture->getSize().y;
 
 		_sprite.setTextureRect(sf::IntRect{ sf::Vector2i{}, sf::Vector2i{textureWidth, textureHeight} });
+		CenterPivot();
 	}
 
 	void Actor::Render(sf::RenderWindow& window)
@@ -60,5 +61,51 @@ namespace rn
 			return;
 
 		window.draw(_sprite);
+	}
+
+	void Actor::SetActorLocation(const sf::Vector2f& newLocation)
+	{
+		_sprite.setPosition(newLocation);
+	}
+
+	void Actor::AddActorLocationOffset(const sf::Vector2f& offsetAmount)
+	{
+		SetActorLocation(GetActorLocation() + offsetAmount);
+	}
+
+	void Actor::SetActorRotation(float newRotation)
+	{
+		_sprite.setRotation(newRotation);
+	}
+
+	void Actor::AddActorRotationOffset(float offsetAmount)
+	{
+		SetActorRotation(GetActorRotation() + offsetAmount);
+	}
+
+	sf::Vector2f Actor::GetActorForwardDirection() const
+	{
+		return RotationToVector(GetActorRotation());
+	}
+
+	sf::Vector2f Actor::GetActorRightDirection() const
+	{
+		return RotationToVector(GetActorRotation() + 90.0f);
+	}
+
+	sf::Vector2f Actor::GetActorLocation() const
+	{
+		return _sprite.getPosition();
+	}
+
+	float Actor::GetActorRotation() const
+	{
+		return _sprite.getRotation();
+	}
+
+	void Actor::CenterPivot()
+	{
+		sf::FloatRect bound = _sprite.getGlobalBounds();
+		_sprite.setOrigin(bound.width / 2.0f, bound.height / 2.0f);
 	}
 }
