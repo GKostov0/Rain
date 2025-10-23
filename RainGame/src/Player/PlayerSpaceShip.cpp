@@ -1,5 +1,6 @@
-#include "Player/PlayerSpaceShip.h"
 #include <SFML/System.hpp>
+#include "Player/PlayerSpaceShip.h"
+#include "framework/MathUtility.h"
 
 namespace rn
 {
@@ -34,11 +35,19 @@ namespace rn
 		{
 			_moveInput.x = 1.0f;
 		}
+
+		NormalizeInput();
 	}
 
 	void PlayerSpaceShip::ConsumeInput(float deltaTime)
 	{
 		SetVelocity(_moveInput * _speed);
 		_moveInput.x = _moveInput.y = 0;
+	}
+
+	void PlayerSpaceShip::NormalizeInput()
+	{
+		Normalize(_moveInput);
+		LOG("Move input is now: %f, %f", _moveInput.x, _moveInput.y);
 	}
 }

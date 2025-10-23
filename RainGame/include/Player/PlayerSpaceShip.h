@@ -17,6 +17,7 @@ namespace rn
 	private:
 		void HandleInput();
 		void ConsumeInput(float deltaTime);
+		void NormalizeInput();
 		sf::Vector2f _moveInput;
 		float _speed;
 	};
