@@ -7,6 +7,12 @@ add_executable(${RAIN_GAME_TARGET_NAME}
 
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Player/PlayerSpaceShip.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Player/PlayerSpaceShip.cpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Weapon/Shooter.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Weapon/Shooter.cpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Weapon/BulletShooter.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Weapon/BulletShooter.cpp
 )
 
 target_include_directories(${RAIN_GAME_TARGET_NAME} PUBLIC

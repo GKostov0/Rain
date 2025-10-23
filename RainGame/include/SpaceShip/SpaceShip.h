@@ -15,6 +15,8 @@ namespace rn
 
 		sf::Vector2f GetVelocity() const { return _velocity; }
 
+		virtual void Shoot();
+
 	private:
 
 		sf::Vector2f _velocity;

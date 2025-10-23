@@ -4,6 +4,8 @@
 
 namespace rn
 {
+	class BulletShooter;
+
 	class PlayerSpaceShip : public SpaceShip
 	{
 	public:
@@ -14,6 +16,8 @@ namespace rn
 		void SetSpeed(float speed) { _speed = speed; }
 		float GetSpeed() const { return _speed; }
 
+		virtual void Shoot() override;
+
 	private:
 		void HandleInput();
 		void ConsumeInput(float deltaTime);
@@ -23,5 +27,7 @@ namespace rn
 	private:
 		sf::Vector2f _moveInput;
 		float _speed;
+
+		unique<BulletShooter> _shooter;
 	};
 }

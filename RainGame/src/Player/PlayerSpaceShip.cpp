@@ -1,11 +1,12 @@
 #include <SFML/System.hpp>
 #include "Player/PlayerSpaceShip.h"
 #include "framework/MathUtility.h"
+#include "Weapon/BulletShooter.h"
 
 namespace rn
 {
 	PlayerSpaceShip::PlayerSpaceShip(World* owner, const std::string& path)
-		: SpaceShip{ owner, path }, _moveInput{}, _speed{400.0f}
+		: SpaceShip{ owner, path }, _moveInput{}, _speed{ 400.0f }, _shooter{ new BulletShooter{this} }
 	{
 	}
 
@@ -14,6 +15,14 @@ namespace rn
 		SpaceShip::Tick(deltaTime);
 		HandleInput();
 		ConsumeInput(deltaTime);
+	}
+
+	void PlayerSpaceShip::Shoot()
+	{
+		if (_shooter)
+		{
+			_shooter->Shoot();
+		}
 	}
 
 	void PlayerSpaceShip::HandleInput()
@@ -38,6 +47,11 @@ namespace rn
 
 		ClampInputOnEdge();
 		NormalizeInput();
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+		{
+			Shoot();
+		}
 	}
 
 	void PlayerSpaceShip::ConsumeInput(float deltaTime)

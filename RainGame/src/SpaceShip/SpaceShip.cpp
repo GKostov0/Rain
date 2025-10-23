@@ -19,4 +19,9 @@ namespace rn
 	{
 		_velocity = velocity;
 	}
+
+	void SpaceShip::Shoot()
+	{
+
+	}
 }
