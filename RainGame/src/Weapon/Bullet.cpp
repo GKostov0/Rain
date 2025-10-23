@@ -23,6 +23,10 @@ namespace rn
 	{
 		Actor::Tick(deltaTime);
 		Move(deltaTime);
+		if (IsActorOutOfBounds())
+		{
+			Destroy();
+		}
 	}
 
 	void Bullet::Move(float deltaTime)

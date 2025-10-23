@@ -105,9 +105,39 @@ namespace rn
 		return _sprite.getRotation();
 	}
 
+	sf::FloatRect Actor::GetActorGlobalBounds() const
+	{
+		return _sprite.getGlobalBounds();
+	}
+
 	sf::Vector2u Actor::GetWindowSize() const
 	{
 		return _owner->GetWindowSize();
+	}
+
+	bool Actor::IsActorOutOfBounds() const
+	{
+		float windowWidth = GetWindowSize().x;
+		float windowHeight = GetWindowSize().y;
+
+		float width = GetActorGlobalBounds().width;
+		float height = GetActorGlobalBounds().height;
+
+		sf::Vector2f actorPosition = GetActorLocation();
+
+		// Left						   or	Right
+		if ((actorPosition.x < -width) || (actorPosition.x > windowWidth + width))
+		{
+			return true;
+		}
+
+		// Up							or	Down
+		if ((actorPosition.y < -height) || (actorPosition.y > windowHeight + height))
+		{
+			return true;
+		}
+
+		return false;
 	}
 
 	void Actor::CenterPivot()

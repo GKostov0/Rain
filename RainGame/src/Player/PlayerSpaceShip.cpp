@@ -48,7 +48,8 @@ namespace rn
 		ClampInputOnEdge();
 		NormalizeInput();
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) ||
+			sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 		{
 			Shoot();
 		}

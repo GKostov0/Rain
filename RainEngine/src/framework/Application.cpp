@@ -65,8 +65,13 @@ namespace rn
 
         if (_cleanCycleClock.getElapsedTime().asSeconds() >= _cleanCycleInterval)
         {
+            // TODO: make the asset manager handle it's own cleaning and the world too!
             _cleanCycleClock.restart();
             AssetManager::Get().CleanCycle();
+            if (_currentWorld)
+            {
+                _currentWorld->CleanCycle();
+            }
         }
     }
 

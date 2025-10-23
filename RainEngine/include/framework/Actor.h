@@ -33,9 +33,13 @@ namespace rn
 		sf::Vector2f GetActorLocation() const;
 		float GetActorRotation() const;
 
+		sf::FloatRect GetActorGlobalBounds() const;
+
 		sf::Vector2u GetWindowSize() const;
 
 		World* GetWorld() const { return _owner; }
+
+		bool IsActorOutOfBounds() const;
 
 	private:
 		void CenterPivot();

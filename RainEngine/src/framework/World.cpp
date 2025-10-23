@@ -35,15 +35,8 @@ namespace rn
 
 		for (auto it = _actors.begin(); it != _actors.end();)
 		{
-			if (it->get()->IsPendingDestroy())
-			{
-				it = _actors.erase(it);
-			}
-			else
-			{
-				it->get()->TickInternal(deltaTime);
-				++it;
-			}
+			it->get()->TickInternal(deltaTime);
+			++it;
 		}
 
 		Tick(deltaTime);
@@ -60,6 +53,21 @@ namespace rn
 	sf::Vector2u World::GetWindowSize() const
 	{
 		return _owner->GetWindowSize();
+	}
+
+	void World::CleanCycle()
+	{
+		for (auto it = _actors.begin(); it != _actors.end();)
+		{
+			if (it->get()->IsPendingDestroy())
+			{
+				it = _actors.erase(it);
+			}
+			else
+			{
+				++it;
+			}
+		}
 	}
 
 	void World::BeginPlay()
