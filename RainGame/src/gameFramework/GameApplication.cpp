@@ -21,7 +21,7 @@ namespace rn
 		newWorld.lock()->SpawnActor<Actor>();
 		_playerSpaceship = newWorld.lock()->SpawnActor<PlayerSpaceShip>();
 		_playerSpaceship.lock()->SetActorLocation({ 300, 490 });
-		_playerSpaceship.lock()->SetActorRotation(0.0f);
+		_playerSpaceship.lock()->SetActorRotation(-90.0f);
 	}
 
 	void GameApplication::Tick(float deltaTime)

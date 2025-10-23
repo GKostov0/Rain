@@ -35,6 +35,8 @@ namespace rn
 
 		sf::Vector2u GetWindowSize() const;
 
+		World* GetWorld() const { return _owner; }
+
 	private:
 		void CenterPivot();
 

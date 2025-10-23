@@ -18,8 +18,8 @@ namespace rn
 
 		void Render(sf::RenderWindow& window);
 
-		template<typename A>
-		weak<A> SpawnActor();
+		template<typename A, typename... Args>
+		weak<A> SpawnActor(Args... args);
 
 		sf::Vector2u GetWindowSize() const;
 
@@ -35,10 +35,10 @@ namespace rn
 		List<shared<Actor>> _pendingActors;
 	};
 
-	template<typename A>
-	weak<A> World::SpawnActor()
+	template<typename A, typename... Args>
+	weak<A> World::SpawnActor(Args... args)
 	{
-		shared<A> newActor{ new A{this} };
+		shared<A> newActor{ new A(this, args...) };
 		_pendingActors.push_back(newActor);
 		return newActor;
 	}
