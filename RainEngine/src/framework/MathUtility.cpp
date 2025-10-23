@@ -2,7 +2,7 @@
 
 namespace rn
 {
-	const float PI = 3.1415926535f;
+	const float PI = 3.1415926535;
 
 	sf::Vector2f RotationToVector(float rotation)
 	{

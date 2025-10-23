@@ -8,6 +8,7 @@ namespace rn
 	Actor::Actor(World* owner, const std::string& texturePath)
 		: _owner{ owner }, _beginPlay{ false }, _texture{ }, _sprite{ }
 	{
+		SetTexture(texturePath);
 	}
 
 	Actor::~Actor()

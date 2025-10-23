@@ -14,6 +14,11 @@ namespace rn
 		return *_assetManager;
 	}
 
+	AssetManager::AssetManager()
+		: _rootDirectory{}
+	{
+	}
+
 	shared<sf::Texture> AssetManager::LoadTexture(const std::string& filePath)
 	{
 		auto result = _loadedTextureMap.find(filePath);
@@ -23,7 +28,7 @@ namespace rn
 		}
 
 		shared<sf::Texture> newTexture{ new sf::Texture };
-		if (newTexture->loadFromFile(filePath))
+		if (newTexture->loadFromFile(_rootDirectory + filePath))
 		{
 			_loadedTextureMap.insert({ filePath, newTexture });
 			return newTexture;
@@ -48,7 +53,10 @@ namespace rn
 		}
 	}
 
-	AssetManager::AssetManager()
+	void AssetManager::SetAssetRootDirectory(const std::string& directory)
 	{
+		_rootDirectory = directory;
 	}
+
+	
 }

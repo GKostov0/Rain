@@ -30,8 +30,7 @@ namespace rn
                 }
                 else if (windowEvent.type == sf::Event::KeyPressed)
                 {
-                    if ((windowEvent.type == sf::Event::KeyPressed) &&
-                        (windowEvent.key.code == sf::Keyboard::Escape))
+                    if (windowEvent.key.code == sf::Keyboard::Escape)
                     {
                         _mainWindow.close();
                     }

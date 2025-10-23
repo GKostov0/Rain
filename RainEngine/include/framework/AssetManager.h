@@ -12,6 +12,7 @@ namespace rn
 		shared<sf::Texture> LoadTexture(const std::string& filePath);
 
 		void CleanCycle();
+		void SetAssetRootDirectory(const std::string& directory);
 
 	protected:
 		AssetManager();
@@ -19,5 +20,7 @@ namespace rn
 	private:
 		static unique<AssetManager> _assetManager;
 		Dictionary<std::string, shared<sf::Texture>> _loadedTextureMap;
+
+		std::string _rootDirectory;
 	};
 }
