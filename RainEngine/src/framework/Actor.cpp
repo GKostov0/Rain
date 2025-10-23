@@ -2,6 +2,7 @@
 #include "framework/Core.h"
 #include "framework/AssetManager.h"
 #include "framework/MathUtility.h"
+#include "framework/World.h"
 
 namespace rn
 {
@@ -102,6 +103,11 @@ namespace rn
 	float Actor::GetActorRotation() const
 	{
 		return _sprite.getRotation();
+	}
+
+	sf::Vector2u Actor::GetWindowSize() const
+	{
+		return _owner->GetWindowSize();
 	}
 
 	void Actor::CenterPivot()

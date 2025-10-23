@@ -21,6 +21,8 @@ namespace rn
 		template<typename A>
 		weak<A> SpawnActor();
 
+		sf::Vector2u GetWindowSize() const;
+
 	private:
 
 		void BeginPlay();

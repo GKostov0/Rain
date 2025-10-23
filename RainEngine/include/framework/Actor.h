@@ -33,6 +33,8 @@ namespace rn
 		sf::Vector2f GetActorLocation() const;
 		float GetActorRotation() const;
 
+		sf::Vector2u GetWindowSize() const;
+
 	private:
 		void CenterPivot();
 

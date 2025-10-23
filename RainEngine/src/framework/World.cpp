@@ -1,6 +1,7 @@
 #include "framework/World.h"
 #include "framework/Core.h"
 #include "framework/Actor.h"
+#include "framework/Application.h"
 
 namespace rn
 {
@@ -54,6 +55,11 @@ namespace rn
 		{
 			actor->Render(window);
 		}
+	}
+
+	sf::Vector2u World::GetWindowSize() const
+	{
+		return _owner->GetWindowSize();
 	}
 
 	void World::BeginPlay()

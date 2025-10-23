@@ -5,7 +5,7 @@
 namespace rn
 {
 	PlayerSpaceShip::PlayerSpaceShip(World* owner, const std::string& path)
-		: SpaceShip{ owner, path }, _moveInput{}, _speed{200.0f}
+		: SpaceShip{ owner, path }, _moveInput{}, _speed{400.0f}
 	{
 	}
 
@@ -36,6 +36,7 @@ namespace rn
 			_moveInput.x = 1.0f;
 		}
 
+		ClampInputOnEdge();
 		NormalizeInput();
 	}
 
@@ -48,6 +49,15 @@ namespace rn
 	void PlayerSpaceShip::NormalizeInput()
 	{
 		Normalize(_moveInput);
-		LOG("Move input is now: %f, %f", _moveInput.x, _moveInput.y);
+	}
+
+	void PlayerSpaceShip::ClampInputOnEdge()
+	{
+		sf::Vector2f actorLocation = GetActorLocation();
+
+		if (actorLocation.x < 0 && _moveInput.x == -1)					{ _moveInput.x = 0; }			// Left
+		if (actorLocation.x > GetWindowSize().x && _moveInput.x == 1)	{ _moveInput.x = 0; }			// Right
+		if (actorLocation.y < 0 && _moveInput.y == -1)					{ _moveInput.y = 0; }			// Up
+		if (actorLocation.y > GetWindowSize().y && _moveInput.y == 1)	{ _moveInput.y = 0; }			// Down
 	}
 }

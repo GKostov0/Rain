@@ -48,6 +48,11 @@ namespace rn
         }
 	}
 
+    sf::Vector2u Application::GetWindowSize() const
+    {
+        return _mainWindow.getSize();
+    }
+
     void Application::TickInternal(float deltaTime)
     {
         Tick(deltaTime);

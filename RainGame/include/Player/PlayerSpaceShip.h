@@ -18,6 +18,9 @@ namespace rn
 		void HandleInput();
 		void ConsumeInput(float deltaTime);
 		void NormalizeInput();
+		void ClampInputOnEdge();
+
+	private:
 		sf::Vector2f _moveInput;
 		float _speed;
 	};
