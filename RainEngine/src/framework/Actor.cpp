@@ -1,10 +1,12 @@
 #include "framework/Actor.h"
 #include "framework/Core.h"
 
+#include "framework/AssetManager.h"
+
 namespace rn
 {
 	Actor::Actor(World* owner, const std::string& texturePath)
-		: _owner{ owner }, _beginPlay{ false }, _texture{}, _sprite{ _texture }
+		: _owner{ owner }, _beginPlay{ false }, _texture{ }, _sprite{ }
 	{
 	}
 
@@ -37,16 +39,17 @@ namespace rn
 
 	void Actor::Tick(float deltaTime)
 	{
-		LOG("Actor tick!");
 	}
 
 	void Actor::SetTexture(const std::string& path)
 	{
-		_texture.loadFromFile(path);
-		_sprite.setTexture(_texture);
+		_texture = AssetManager::Get().LoadTexture(path);
+		if (!_texture) return;
 
-		int textureWidth = _texture.getSize().x;
-		int textureHeight = _texture.getSize().y;
+		_sprite.setTexture(*_texture);
+
+		int textureWidth = _texture->getSize().x;
+		int textureHeight = _texture->getSize().y;
 
 		_sprite.setTextureRect(sf::IntRect{ sf::Vector2i{}, sf::Vector2i{textureWidth, textureHeight} });
 	}

@@ -29,6 +29,9 @@ namespace rn
 		float _targetFrameRate;
 		sf::Clock _tickClock;
 
+		sf::Clock _cleanCycleClock;
+		float _cleanCycleInterval;
+
 		shared<World> _currentWorld;
 	};
 

@@ -1,12 +1,13 @@
 #include "framework/Application.h"
 #include "framework/Core.h"
 #include <framework/World.h>
+#include <framework/AssetManager.h>
 
 namespace rn
 {
     Application::Application(unsigned int windowWidth, unsigned int windowHeight, const std::string& title, std::uint32_t style)
         : _mainWindow{ sf::VideoMode({ windowWidth, windowHeight }), title, style },
-        _targetFrameRate{ 60.0f }, _tickClock{}, _currentWorld{ nullptr }
+        _targetFrameRate{ 60.0f }, _tickClock{}, _currentWorld{ nullptr }, _cleanCycleClock{}, _cleanCycleInterval{3.0f}
     {
 
     }
@@ -20,16 +21,20 @@ namespace rn
 
         while (_mainWindow.isOpen())
         {
-            while (const std::optional wndowEvent = _mainWindow.pollEvent())
+            sf::Event windowEvent;
+            while (_mainWindow.pollEvent(windowEvent))
             {
-                if (wndowEvent->is<sf::Event::Closed>())
+                if (windowEvent.type == sf::Event::EventType::Closed)
                 {
                     _mainWindow.close();
                 }
-                else if (const auto* keyPressed = wndowEvent->getIf<sf::Event::KeyPressed>())
+                else if (windowEvent.type == sf::Event::KeyPressed)
                 {
-                    if (keyPressed->scancode == sf::Keyboard::Scancode::Escape)
+                    if ((windowEvent.type == sf::Event::KeyPressed) &&
+                        (windowEvent.key.code == sf::Keyboard::Escape))
+                    {
                         _mainWindow.close();
+                    }
                 }
             }
 
@@ -52,6 +57,12 @@ namespace rn
         {
             _currentWorld->BeginPlayInternal();
             _currentWorld->TickInternal(deltaTime);
+        }
+
+        if (_cleanCycleClock.getElapsedTime().asSeconds() >= _cleanCycleInterval)
+        {
+            _cleanCycleClock.restart();
+            AssetManager::Get().CleanCycle();
         }
     }
 

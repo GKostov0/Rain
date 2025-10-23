@@ -25,7 +25,7 @@ namespace rn
 		World* _owner;
 		bool _beginPlay;
 
-		sf::Texture _texture;
+		shared<sf::Texture> _texture;
 		sf::Sprite _sprite;
 	};
 }
