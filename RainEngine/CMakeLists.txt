@@ -22,16 +22,43 @@ add_library(${RAIN_ENGINE_TARGET_NAME} STATIC
 
     ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/Core.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/Core.cpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/PhysicsSystem.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/PhysicsSystem.cpp
 )
 
 target_include_directories(${RAIN_ENGINE_TARGET_NAME} PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
+include(FetchContent)
+set(SFML_LIB_NAME SFML)
+
+FetchContent_Declare(
+    ${SFML_LIB_NAME}
+    GIT_REPOSITORY https://github.com/SFML/SFML
+    GIT_TAG 2.6.2
+    GIT_SHALLOW FALSE 
+)
+FetchContent_MakeAvailable(${SFML_LIB_NAME})
+
 target_link_libraries(${RAIN_ENGINE_TARGET_NAME} PUBLIC sfml-graphics)
 target_link_libraries(${RAIN_ENGINE_TARGET_NAME} PUBLIC sfml-window)
 target_link_libraries(${RAIN_ENGINE_TARGET_NAME} PUBLIC sfml-system)
 target_link_libraries(${RAIN_ENGINE_TARGET_NAME} PUBLIC sfml-audio)
+
+set(BOX_2D_LIBRARY_NAME Box2D)
+
+FetchContent_Declare(
+    ${BOX_2D_LIBRARY_NAME}
+    GIT_REPOSITORY https://github.com/erincatto/box2d
+    GIT_TAG v2.4.1
+    GIT_SHALLOW FALSE 
+)
+FetchContent_MakeAvailable(${BOX_2D_LIBRARY_NAME})
+
+target_link_libraries(${RAIN_ENGINE_TARGET_NAME} PUBLIC box2d)
+
 
 function(CopyLibToTarget LIB_NAME TARGET_NAME)
 
@@ -49,3 +76,4 @@ CopyLibToTarget(sfml-graphics ${RAIN_ENGINE_TARGET_NAME})
 CopyLibToTarget(sfml-window ${RAIN_ENGINE_TARGET_NAME})
 CopyLibToTarget(sfml-system ${RAIN_ENGINE_TARGET_NAME})
 CopyLibToTarget(sfml-audio ${RAIN_ENGINE_TARGET_NAME})
+CopyLibToTarget(box2d ${RAIN_ENGINE_TARGET_NAME})
