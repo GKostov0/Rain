@@ -25,8 +25,12 @@ namespace rn
 
 		float GetPhysicsScale() const { return _physicsScale; }
 
+		static void Cleanup();
+
 	protected:
 		PhysicsSystem();
+
+		void ProcessPendingRemoveListeners();
 
 	private:
 		static unique<PhysicsSystem> _physicsSystem;
@@ -37,5 +41,7 @@ namespace rn
 		int _positionIterations;
 
 		PhysicsContactListener _contactListener;
+
+		Set<b2Body*> _pendingReoveListeners;
 	};
 }

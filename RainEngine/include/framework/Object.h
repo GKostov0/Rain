@@ -10,7 +10,7 @@ namespace rn
 
 		bool IsPendingDestroy() const { return _pendingDestroy; }
 
-		void Destroy();
+		virtual void Destroy();
 
 	private:
 		bool _pendingDestroy;

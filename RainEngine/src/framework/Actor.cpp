@@ -170,6 +170,12 @@ namespace rn
 		LOG("End Overlap!");
 	}
 
+	void Actor::Destroy()
+	{
+		UnInitializePhysics();
+		Object::Destroy();
+	}
+
 	void Actor::CenterPivot()
 	{
 		sf::FloatRect bound = _sprite.getGlobalBounds();
@@ -189,6 +195,7 @@ namespace rn
 		if (_physicsBody)
 		{
 			PhysicsSystem::Get().RemoveListener(_physicsBody);
+			_physicsBody = nullptr;
 		}
 	}
 

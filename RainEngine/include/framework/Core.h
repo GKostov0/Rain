@@ -5,6 +5,7 @@
 #include <vector>
 #include <map>
 #include <unordered_map>
+#include <unordered_set>
 
 template <typename T>
 using unique = std::unique_ptr<T>;
@@ -17,6 +18,9 @@ using weak = std::weak_ptr<T>;
 
 template <typename T>
 using List = std::vector<T>;
+
+template <typename T>
+using Set = std::unordered_set<T>;
 
 template <typename K, typename V, typename P = std::less<K>>
 using Map = std::map<K, V, P>;

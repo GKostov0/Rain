@@ -15,7 +15,7 @@ namespace rn
 	{
 		if (!_physicsSystem)
 		{
-			_physicsSystem = unique<PhysicsSystem>{ new PhysicsSystem };
+			_physicsSystem = std::move(unique<PhysicsSystem>{ new PhysicsSystem });
 		}
 
 		return *_physicsSystem;
@@ -23,6 +23,7 @@ namespace rn
 
 	void PhysicsSystem::Step(float deltaTime)
 	{
+		ProcessPendingRemoveListeners();
 		_physicsWorld.Step(deltaTime, _velocityIterations, _positionIterations);
 	}
 
@@ -62,15 +63,31 @@ namespace rn
 
 	void PhysicsSystem::RemoveListener(b2Body* remove)
 	{
-		// TODO: Remove
+		_pendingReoveListeners.insert(remove);
+	}
+
+	void PhysicsSystem::Cleanup()
+	{
+		_physicsSystem = std::move(unique<PhysicsSystem>{ new PhysicsSystem });
 	}
 
 	PhysicsSystem::PhysicsSystem()
 		: _physicsWorld{ b2Vec2{0.0f,0.0f} }, _physicsScale{0.01f},
-		_velocityIterations{ 8 }, _positionIterations{ 3 }, _contactListener{}
+		_velocityIterations{ 8 }, _positionIterations{ 3 }, _contactListener{},
+		_pendingReoveListeners{}
 	{
 		_physicsWorld.SetContactListener(&_contactListener);
 		_physicsWorld.SetAllowSleeping(false);
+	}
+
+	void PhysicsSystem::ProcessPendingRemoveListeners()
+	{
+		for (auto listener : _pendingReoveListeners)
+		{
+			_physicsWorld.DestroyBody(listener);
+		}
+
+		_pendingReoveListeners.clear();
 	}
 
 	void PhysicsContactListener::BeginContact(b2Contact* contact)
