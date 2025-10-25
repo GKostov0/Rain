@@ -1,4 +1,10 @@
+#include <box2d/b2_body.h>
+#include <box2d/b2_polygon_shape.h>
+#include <box2d/b2_fixture.h>
+
 #include "framework/PhysicsSystem.h"
+#include "framework/Actor.h"
+#include "framework/MathUtility.h"
 
 namespace rn
 {
@@ -14,8 +20,48 @@ namespace rn
 		return *_physicsSystem;
 	}
 
+	void PhysicsSystem::Step(float deltaTime)
+	{
+		_physicsWorld.Step(deltaTime, _velocityIterations, _positionIterations);
+	}
+
+	b2Body* PhysicsSystem::AddListener(Actor* listener)
+	{
+		if (listener->IsPendingDestroy())
+		{
+			return nullptr;
+		}
+
+		b2BodyDef bodyDef;
+		bodyDef.type = b2_dynamicBody;
+
+		bodyDef.userData.pointer = reinterpret_cast<uintptr_t>(listener);
+
+		bodyDef.position.Set(listener->GetActorLocation().x * GetPhysicsScale(), listener->GetActorLocation().y * GetPhysicsScale());
+		bodyDef.angle = DegreesToRadians(listener->GetActorRotation());
+
+		b2Body* body = _physicsWorld.CreateBody(&bodyDef);
+
+		b2PolygonShape shape;
+		sf::FloatRect bounds = listener->GetActorGlobalBounds();
+
+		shape.SetAsBox(bounds.width / 2.0f * GetPhysicsScale(), bounds.height / 2.0f * GetPhysicsScale());
+
+		b2FixtureDef fixtureDef;
+		fixtureDef.shape = &shape;
+
+		fixtureDef.density = 1.0f;
+		fixtureDef.friction = 0.3f;
+		fixtureDef.isSensor = true;
+
+		body->CreateFixture(&fixtureDef);
+
+		return body;
+	}
+
 	PhysicsSystem::PhysicsSystem()
-		: _physicsWorld{ b2Vec2{0.0f,0.0f} }, _physicsScale{0.01f}
+		: _physicsWorld{ b2Vec2{0.0f,0.0f} }, _physicsScale{0.01f},
+		_velocityIterations{ 8 }, _positionIterations{3}
 	{
 	}
 }

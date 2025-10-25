@@ -2,6 +2,7 @@
 #include "framework/Core.h"
 #include <framework/World.h>
 #include <framework/AssetManager.h>
+#include <framework/PhysicsSystem.h>
 
 namespace rn
 {
@@ -62,6 +63,8 @@ namespace rn
             _currentWorld->BeginPlayInternal();
             _currentWorld->TickInternal(deltaTime);
         }
+
+        PhysicsSystem::Get().Step(deltaTime);
 
         if (_cleanCycleClock.getElapsedTime().asSeconds() >= _cleanCycleInterval)
         {
