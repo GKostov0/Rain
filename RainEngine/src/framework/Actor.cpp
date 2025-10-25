@@ -72,6 +72,7 @@ namespace rn
 	void Actor::SetActorLocation(const sf::Vector2f& newLocation)
 	{
 		_sprite.setPosition(newLocation);
+		UpdatePhysicsBodyTransform();
 	}
 
 	void Actor::AddActorLocationOffset(const sf::Vector2f& offsetAmount)
@@ -82,6 +83,7 @@ namespace rn
 	void Actor::SetActorRotation(float newRotation)
 	{
 		_sprite.setRotation(newRotation);
+		UpdatePhysicsBodyTransform();
 	}
 
 	void Actor::AddActorRotationOffset(float offsetAmount)
@@ -156,6 +158,16 @@ namespace rn
 		{
 			UnInitializePhysics();
 		}
+	}
+
+	void Actor::OnActorBeginOverlap(Actor* other)
+	{
+		LOG("Begin Overlap!");
+	}
+
+	void Actor::OnActorEndOverlap(Actor* other)
+	{
+		LOG("End Overlap!");
 	}
 
 	void Actor::CenterPivot()

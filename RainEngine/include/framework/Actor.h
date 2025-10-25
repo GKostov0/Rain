@@ -45,6 +45,9 @@ namespace rn
 
 		void SetEnablePhysics(bool enable);
 
+		virtual void OnActorBeginOverlap(Actor* other);
+		virtual void OnActorEndOverlap(Actor* other);
+
 	private:
 		void CenterPivot();
 		void InitializePhysics();

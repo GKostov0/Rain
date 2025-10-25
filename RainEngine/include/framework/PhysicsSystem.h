@@ -7,6 +7,12 @@ namespace rn
 {
 	class Actor;
 
+	class PhysicsContactListener : public b2ContactListener
+	{
+		virtual void BeginContact(b2Contact* contact) override;
+		virtual void EndContact(b2Contact* contact) override;
+	};
+
 	class PhysicsSystem
 	{
 	public:
@@ -29,5 +35,7 @@ namespace rn
 
 		int _velocityIterations;
 		int _positionIterations;
+
+		PhysicsContactListener _contactListener;
 	};
 }

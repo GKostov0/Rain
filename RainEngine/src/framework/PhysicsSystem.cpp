@@ -1,4 +1,5 @@
 #include <box2d/b2_body.h>
+#include <box2d/b2_contact.h>
 #include <box2d/b2_polygon_shape.h>
 #include <box2d/b2_fixture.h>
 
@@ -66,7 +67,51 @@ namespace rn
 
 	PhysicsSystem::PhysicsSystem()
 		: _physicsWorld{ b2Vec2{0.0f,0.0f} }, _physicsScale{0.01f},
-		_velocityIterations{ 8 }, _positionIterations{3}
+		_velocityIterations{ 8 }, _positionIterations{ 3 }, _contactListener{}
 	{
+		_physicsWorld.SetContactListener(&_contactListener);
+		_physicsWorld.SetAllowSleeping(false);
+	}
+
+	void PhysicsContactListener::BeginContact(b2Contact* contact)
+	{
+		Actor* first = reinterpret_cast<Actor*>(contact->GetFixtureA()->GetBody()->GetUserData().pointer);
+		Actor* second = reinterpret_cast<Actor*>(contact->GetFixtureB()->GetBody()->GetUserData().pointer);
+
+		if (first && !first->IsPendingDestroy())
+		{
+			first->OnActorBeginOverlap(second);
+		}
+
+		if (second && !second->IsPendingDestroy())
+		{
+			second->OnActorBeginOverlap(first);
+		}
+	}
+
+	void PhysicsContactListener::EndContact(b2Contact* contact)
+	{
+		Actor* first = nullptr;
+		Actor* second = nullptr;
+
+		if (contact->GetFixtureA() && contact->GetFixtureA()->GetBody())
+		{
+			first = reinterpret_cast<Actor*>(contact->GetFixtureA()->GetBody()->GetUserData().pointer);
+		}
+
+		if (contact->GetFixtureB() && contact->GetFixtureB()->GetBody())
+		{
+			second = reinterpret_cast<Actor*>(contact->GetFixtureB()->GetBody()->GetUserData().pointer);
+		}
+
+		if (first && !first->IsPendingDestroy())
+		{
+			first->OnActorEndOverlap(second);
+		}
+
+		if (second && !second->IsPendingDestroy())
+		{
+			second->OnActorEndOverlap(first);
+		}
 	}
 }
