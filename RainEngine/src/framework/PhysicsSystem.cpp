@@ -59,6 +59,11 @@ namespace rn
 		return body;
 	}
 
+	void PhysicsSystem::RemoveListener(b2Body* remove)
+	{
+		// TODO: Remove
+	}
+
 	PhysicsSystem::PhysicsSystem()
 		: _physicsWorld{ b2Vec2{0.0f,0.0f} }, _physicsScale{0.01f},
 		_velocityIterations{ 8 }, _positionIterations{3}

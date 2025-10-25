@@ -17,6 +17,8 @@ namespace rn
 
 		virtual void Shoot();
 
+		virtual void BeginPlay() override;
+
 	private:
 
 		sf::Vector2f _velocity;

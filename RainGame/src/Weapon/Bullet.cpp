@@ -29,6 +29,12 @@ namespace rn
 		}
 	}
 
+	void Bullet::BeginPlay()
+	{
+		Actor::BeginPlay();
+		SetEnablePhysics(true);
+	}
+
 	void Bullet::Move(float deltaTime)
 	{
 		AddActorLocationOffset(GetActorForwardDirection() * _speed * deltaTime);

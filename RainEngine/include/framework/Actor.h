@@ -3,6 +3,8 @@
 #include "framework/Core.h"
 #include "Object.h"
 
+class b2Body;
+
 namespace rn
 {
 	class World;
@@ -41,8 +43,13 @@ namespace rn
 
 		bool IsActorOutOfBounds() const;
 
+		void SetEnablePhysics(bool enable);
+
 	private:
 		void CenterPivot();
+		void InitializePhysics();
+		void UnInitializePhysics();
+		void UpdatePhysicsBodyTransform();
 
 	private:
 		World* _owner;
@@ -50,5 +57,8 @@ namespace rn
 
 		shared<sf::Texture> _texture;
 		sf::Sprite _sprite;
+
+		b2Body* _physicsBody;
+		bool _physicsEnabled;
 	};
 }

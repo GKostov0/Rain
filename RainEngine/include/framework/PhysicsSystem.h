@@ -15,6 +15,7 @@ namespace rn
 		void Step(float deltaTime);
 
 		b2Body* AddListener(Actor* listener);
+		void RemoveListener(b2Body* remove);
 
 		float GetPhysicsScale() const { return _physicsScale; }
 

@@ -1,13 +1,17 @@
+#include <box2d/b2_body.h>
+
 #include "framework/Actor.h"
 #include "framework/Core.h"
 #include "framework/AssetManager.h"
 #include "framework/MathUtility.h"
 #include "framework/World.h"
+#include "framework/PhysicsSystem.h"
 
 namespace rn
 {
 	Actor::Actor(World* owner, const std::string& texturePath)
-		: _owner{ owner }, _beginPlay{ false }, _texture{ }, _sprite{ }
+		: _owner{ owner }, _beginPlay{ false }, _texture{ }, _sprite{ },
+			_physicsBody{ nullptr }, _physicsEnabled{false}
 	{
 		SetTexture(texturePath);
 	}
@@ -140,9 +144,51 @@ namespace rn
 		return false;
 	}
 
+	void Actor::SetEnablePhysics(bool enable)
+	{
+		_physicsEnabled = enable;
+
+		if (_physicsEnabled)
+		{
+			InitializePhysics();
+		}
+		else
+		{
+			UnInitializePhysics();
+		}
+	}
+
 	void Actor::CenterPivot()
 	{
 		sf::FloatRect bound = _sprite.getGlobalBounds();
 		_sprite.setOrigin(bound.width / 2.0f, bound.height / 2.0f);
+	}
+
+	void Actor::InitializePhysics()
+	{
+		if (!_physicsBody)
+		{
+			_physicsBody = PhysicsSystem::Get().AddListener(this);
+		}
+	}
+
+	void Actor::UnInitializePhysics()
+	{
+		if (_physicsBody)
+		{
+			PhysicsSystem::Get().RemoveListener(_physicsBody);
+		}
+	}
+
+	void Actor::UpdatePhysicsBodyTransform()
+	{
+		if (_physicsBody)
+		{
+			float physicsScale = PhysicsSystem::Get().GetPhysicsScale();
+			b2Vec2 pos{ GetActorLocation().x * physicsScale, GetActorLocation().y * physicsScale };
+			float rotation = DegreesToRadians(GetActorRotation());
+
+			_physicsBody->SetTransform(pos, rotation);
+		}
 	}
 }
