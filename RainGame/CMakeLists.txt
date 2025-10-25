@@ -16,6 +16,9 @@ add_executable(${RAIN_GAME_TARGET_NAME}
 
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Weapon/Bullet.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Weapon/Bullet.cpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/gameplay/HealthComponent.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/gameplay/HealthComponent.cpp
 )
 
 target_include_directories(${RAIN_GAME_TARGET_NAME} PUBLIC

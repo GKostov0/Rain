@@ -3,7 +3,7 @@
 namespace rn
 {
 	SpaceShip::SpaceShip(World* owner, const std::string& texturePath)
-		: Actor{ owner, texturePath }, _velocity{}
+		: Actor{ owner, texturePath }, _velocity{}, _healthComponent{100.0f, 100.0f}
 	{
 
 	}

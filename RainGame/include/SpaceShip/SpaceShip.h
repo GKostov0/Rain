@@ -1,6 +1,7 @@
 #pragma once
 
 #include "framework/Actor.h"
+#include "gameplay/HealthComponent.h"
 
 namespace rn
 {
@@ -22,5 +23,6 @@ namespace rn
 	private:
 
 		sf::Vector2f _velocity;
+		HealthComponent _healthComponent;
 	};
 }
