@@ -50,6 +50,14 @@ namespace rn
 
 		virtual void Destroy() override;
 
+		static uint8 GetNeutralTeamID() { return neutralTeamID; }
+		void SetTeamID(uint8 teamID) { _teamID = teamID; }
+		uint8 GetTeamID() const { return _teamID; }
+
+		bool IsOtherHostile(Actor* other) const;
+
+		virtual void ApplyDamage(float amount);
+
 	private:
 		void CenterPivot();
 		void InitializePhysics();
@@ -65,5 +73,9 @@ namespace rn
 
 		b2Body* _physicsBody;
 		bool _physicsEnabled;
+
+		uint8 _teamID;
+
+		const static uint8 neutralTeamID = 255;
 	};
 }

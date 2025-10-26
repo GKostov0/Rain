@@ -4,9 +4,9 @@ namespace rn
 {
 	Bullet::Bullet(World* world, Actor* owner, const std::string& texturePath, float speed, float damage)
 		: Actor{ world, texturePath }, _owner{ owner }, 
-			_speed{ speed }, _damage{damage}
+		_speed{ speed }, _damage{ damage }
 	{
-
+		SetTeamID(owner->GetTeamID());
 	}
 
 	void Bullet::SetSpeed(float speed)
@@ -25,6 +25,15 @@ namespace rn
 		Move(deltaTime);
 		if (IsActorOutOfBounds())
 		{
+			Destroy();
+		}
+	}
+
+	void Bullet::OnActorBeginOverlap(Actor* other)
+	{
+		if (IsOtherHostile(other))
+		{
+			other->ApplyDamage(GetDamage());
 			Destroy();
 		}
 	}

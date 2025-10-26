@@ -24,13 +24,14 @@ namespace rn
 
 		weak<SpaceShip> testSpaceship = newWorld.lock()->SpawnActor<SpaceShip>();
 		testSpaceship.lock()->SetTexture("SpaceShooterRedux/PNG/playerShip1_blue.png");
-		testSpaceship.lock()->SetActorLocation(sf::Vector2f{100.0f, 50.0f});
+		testSpaceship.lock()->SetActorLocation(sf::Vector2f{ 100.0f, 50.0f });
+		testSpaceship.lock()->SetTeamID(2);
 		_counter = 0;
 	}
 
 	void GameApplication::Tick(float deltaTime)
 	{
-		_counter += deltaTime;
+		/*_counter += deltaTime;
 
 		if (_counter > 10.0f)
 		{
@@ -38,6 +39,6 @@ namespace rn
 			{
 				_playerSpaceship.lock()->Destroy();
 			}
-		}
+		}*/
 	}
 }

@@ -14,6 +14,10 @@ namespace rn
 
 		virtual void Tick(float deltaTime) override;
 
+		virtual void OnActorBeginOverlap(Actor* other) override;
+
+		float GetDamage() const { return _damage; }
+
 		virtual void BeginPlay() override;
 
 	private:

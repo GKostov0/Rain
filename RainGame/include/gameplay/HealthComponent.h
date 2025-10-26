@@ -14,6 +14,8 @@ namespace rn
 		float GetMaxHealth() const { return _maxHealth; }
 
 		Delegate<float, float, float> onHealthChanged;
+		Delegate<float, float, float> onTakenDamage;
+		Delegate<> onHealthEmpty;
 
 	private:
 		void TakenDamage(float amount);

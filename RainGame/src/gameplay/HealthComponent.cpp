@@ -29,27 +29,20 @@ namespace rn
 
 			if (_currentHealth <= 0)
 			{
-
+				HealthEmpty();
 			}
 		}
-		else
-		{
 
-		}
+		onHealthChanged.Broadcast(amount, _currentHealth, _maxHealth);
 	}
 
 	void HealthComponent::TakenDamage(float amount)
 	{
-		LOG("Damage taken: %f, current hp: %f/%f", amount, _currentHealth, _maxHealth);
+		onTakenDamage.Broadcast(amount, _currentHealth, _maxHealth);
 	}
 
 	void HealthComponent::HealthEmpty()
 	{
-		LOG("Health Empty: %f/%f", _currentHealth, _maxHealth);
-	}
-
-	void HealthComponent::HealthRegen(float amount)
-	{
-		LOG("Health regenerated: %f, current hp: %f/%f", amount, _currentHealth, _maxHealth);
+		onHealthEmpty.Broadcast();
 	}
 }

@@ -28,4 +28,6 @@ using Map = std::map<K, V, P>;
 template <typename K, typename V, typename H = std::hash<K>>
 using Dictionary = std::unordered_map<K, V, H>;
 
+using uint8 = unsigned char;
+
 #define LOG(M, ...) printf(M "\n", ##__VA_ARGS__)

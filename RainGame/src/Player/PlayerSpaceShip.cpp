@@ -8,6 +8,7 @@ namespace rn
 	PlayerSpaceShip::PlayerSpaceShip(World* owner, const std::string& path)
 		: SpaceShip{ owner, path }, _moveInput{}, _speed{ 400.0f }, _shooter{ new BulletShooter{this, 0.1f} }
 	{
+		SetTeamID(1);
 	}
 
 	void PlayerSpaceShip::Tick(float deltaTime)
