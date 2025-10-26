@@ -15,6 +15,17 @@ namespace rn
 
 	void Object::Destroy()
 	{
+		onDestroy.Broadcast(this);
 		_pendingDestroy = true;
+	}
+
+	weak<Object> Object::GetWeakReference()
+	{
+		return weak_from_this();
+	}
+
+	weak<const Object> Object::GetWeakReference() const
+	{
+		return weak_from_this();
 	}
 }

@@ -21,6 +21,9 @@ namespace rn
 		virtual void BeginPlay() override;
 
 	private:
+		void OnHealthChanged(float amount, float currentHelath, float maxHealth);
+
+	private:
 
 		sf::Vector2f _velocity;
 		HealthComponent _healthComponent;

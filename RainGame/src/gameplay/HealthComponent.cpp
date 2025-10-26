@@ -40,7 +40,7 @@ namespace rn
 
 	void HealthComponent::TakenDamage(float amount)
 	{
-		LOG("Damage taken: %f, current hp: %f/%f", amount, _currentHealth. _maxHealth);
+		LOG("Damage taken: %f, current hp: %f/%f", amount, _currentHealth, _maxHealth);
 	}
 
 	void HealthComponent::HealthEmpty()
