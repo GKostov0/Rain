@@ -5,7 +5,7 @@
 namespace rn
 {
 	class Actor;
-	class PlayerSpaceShip;
+	class PlayerSpaceship;
 
 	class GameApplication : public Application
 	{
@@ -16,6 +16,6 @@ namespace rn
 
 	private:
 		float _counter;
-		weak<PlayerSpaceShip> _playerSpaceship;
+		weak<PlayerSpaceship> _playerSpaceship;
 	};
 }

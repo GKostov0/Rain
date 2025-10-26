@@ -1,24 +1,24 @@
 #include <SFML/System.hpp>
-#include "Player/PlayerSpaceShip.h"
+#include "Player/PlayerSpaceship.h"
 #include "framework/MathUtility.h"
 #include "Weapon/BulletShooter.h"
 
 namespace rn
 {
-	PlayerSpaceShip::PlayerSpaceShip(World* owner, const std::string& path)
-		: SpaceShip{ owner, path }, _moveInput{}, _speed{ 400.0f }, _shooter{ new BulletShooter{this, 0.1f} }
+	PlayerSpaceship::PlayerSpaceship(World* owner, const std::string& path)
+		: Spaceship{ owner, path }, _moveInput{}, _speed{ 400.0f }, _shooter{ new BulletShooter{this, 0.1f} }
 	{
 		SetTeamID(1);
 	}
 
-	void PlayerSpaceShip::Tick(float deltaTime)
+	void PlayerSpaceship::Tick(float deltaTime)
 	{
-		SpaceShip::Tick(deltaTime);
+		Spaceship::Tick(deltaTime);
 		HandleInput();
 		ConsumeInput(deltaTime);
 	}
 
-	void PlayerSpaceShip::Shoot()
+	void PlayerSpaceship::Shoot()
 	{
 		if (_shooter)
 		{
@@ -26,7 +26,7 @@ namespace rn
 		}
 	}
 
-	void PlayerSpaceShip::HandleInput()
+	void PlayerSpaceship::HandleInput()
 	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 		{
@@ -56,18 +56,18 @@ namespace rn
 		}
 	}
 
-	void PlayerSpaceShip::ConsumeInput(float deltaTime)
+	void PlayerSpaceship::ConsumeInput(float deltaTime)
 	{
 		SetVelocity(_moveInput * _speed);
 		_moveInput.x = _moveInput.y = 0;
 	}
 
-	void PlayerSpaceShip::NormalizeInput()
+	void PlayerSpaceship::NormalizeInput()
 	{
 		Normalize(_moveInput);
 	}
 
-	void PlayerSpaceShip::ClampInputOnEdge()
+	void PlayerSpaceship::ClampInputOnEdge()
 	{
 		sf::Vector2f actorLocation = GetActorLocation();
 

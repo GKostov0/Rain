@@ -1,56 +1,80 @@
-#include "SpaceShip/SpaceShip.h"
+#include "Spaceship/Spaceship.h"
+#include "framework/MathUtility.h"
 
 namespace rn
 {
-	SpaceShip::SpaceShip(World* owner, const std::string& texturePath)
-		: Actor{ owner, texturePath }, _velocity{}, _healthComponent{100.0f, 100.0f}
+	Spaceship::Spaceship(World* owner, const std::string& texturePath)
+		: Actor{ owner, texturePath }, _velocity{}, _healthComponent{100.0f, 100.0f},
+		_blinkTimer{ 0.0f }, _blinkDuration{ 0.4f }, _blinkColor{255, 0, 0 , 255}
 	{
 
 	}
 
-	void SpaceShip::Tick(float deltaTime)
+	void Spaceship::Tick(float deltaTime)
 	{
 		Actor::Tick(deltaTime);
 
 		AddActorLocationOffset(_velocity * deltaTime);
+		UpdateBlink(deltaTime);
 	}
 
-	void SpaceShip::SetVelocity(const sf::Vector2f& velocity)
+	void Spaceship::SetVelocity(const sf::Vector2f& velocity)
 	{
 		_velocity = velocity;
 	}
 
-	void SpaceShip::Shoot()
+	void Spaceship::Shoot()
 	{
 
 	}
 
-	void SpaceShip::BeginPlay()
+	void Spaceship::BeginPlay()
 	{
 		Actor::BeginPlay();
 		SetEnablePhysics(true);
 
-		_healthComponent.onHealthChanged.BindAction(GetWeakReference(), &SpaceShip::OnHealthChanged);
-		_healthComponent.onTakenDamage.BindAction(GetWeakReference(), &SpaceShip::OnTakenDamage);
-		_healthComponent.onHealthEmpty.BindAction(GetWeakReference(), &SpaceShip::Blow);
+		_healthComponent.onHealthChanged.BindAction(GetWeakReference(), &Spaceship::OnHealthChanged);
+		_healthComponent.onTakenDamage.BindAction(GetWeakReference(), &Spaceship::OnTakenDamage);
+		_healthComponent.onHealthEmpty.BindAction(GetWeakReference(), &Spaceship::Blow);
 	}
 
-	void SpaceShip::ApplyDamage(float amount)
+	void Spaceship::ApplyDamage(float amount)
 	{
 		_healthComponent.ChangeHealth(-amount);
 	}
 
-	void SpaceShip::OnHealthChanged(float amount, float currentHelath, float maxHealth)
+	void Spaceship::OnHealthChanged(float amount, float currentHelath, float maxHealth)
 	{
 		
 	}
 
-	void SpaceShip::OnTakenDamage(float amount, float currentHelath, float maxHealth)
+	void Spaceship::OnTakenDamage(float amount, float currentHelath, float maxHealth)
 	{
+		Blink();
 	}
 
-	void SpaceShip::Blow()
+	void Spaceship::Blow()
 	{
 		Destroy();
+	}
+
+	void Spaceship::Blink()
+	{
+		if (_blinkTimer == 0.0f)
+		{
+			_blinkTimer = _blinkDuration;
+		}
+	}
+
+	void Spaceship::UpdateBlink(float deltaTime)
+	{
+		if (_blinkTimer > 0)
+		{
+			_blinkTimer -= deltaTime;
+
+			_blinkTimer = _blinkTimer > 0 ? _blinkTimer : 0.0f;
+
+			GetSprite().setColor(LerpColor(sf::Color::White, _blinkColor, _blinkTimer));
+		}
 	}
 }

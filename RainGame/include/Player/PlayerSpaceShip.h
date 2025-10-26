@@ -1,15 +1,15 @@
 #pragma once
 
-#include "SpaceShip/SpaceShip.h"
+#include "SpaceShip/Spaceship.h"
 
 namespace rn
 {
 	class BulletShooter;
 
-	class PlayerSpaceShip : public SpaceShip
+	class PlayerSpaceship : public Spaceship
 	{
 	public:
-		PlayerSpaceShip(World* owner, const std::string& path = "SpaceShooterRedux/PNG/playerShip1_blue.png");
+		PlayerSpaceship(World* owner, const std::string& path = "SpaceShooterRedux/PNG/playerShip1_blue.png");
 
 		virtual void Tick(float deltaTime) override;
 

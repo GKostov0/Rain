@@ -5,10 +5,10 @@
 
 namespace rn
 {
-	class SpaceShip : public Actor
+	class Spaceship : public Actor
 	{
 	public:
-		SpaceShip(World* owner, const std::string& texturePath = "");
+		Spaceship(World* owner, const std::string& texturePath = "");
 
 		virtual void BeginPlay() override;
 		virtual void Tick(float deltaTime) override;
@@ -24,9 +24,15 @@ namespace rn
 		virtual void OnTakenDamage(float amount, float currentHelath, float maxHealth);
 		virtual void Blow();
 
+		void Blink();
+		void UpdateBlink(float deltaTime);
 	private:
 
 		sf::Vector2f _velocity;
 		HealthComponent _healthComponent;
+
+		float _blinkTimer;
+		float _blinkDuration;
+		sf::Color _blinkColor;
 	};
 }

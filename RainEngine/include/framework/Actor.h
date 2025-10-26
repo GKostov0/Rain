@@ -39,7 +39,8 @@ namespace rn
 
 		sf::Vector2u GetWindowSize() const;
 
-		World* GetWorld() const { return _owner; }
+		const World* GetWorld() const { return _owner; }
+		World* GetWorld() { return _owner; }
 
 		bool IsActorOutOfBounds() const;
 
@@ -57,6 +58,9 @@ namespace rn
 		bool IsOtherHostile(Actor* other) const;
 
 		virtual void ApplyDamage(float amount);
+
+		sf::Sprite& GetSprite() { return _sprite; }
+		const sf::Sprite& GetSprite() const { return _sprite; }
 
 	private:
 		void CenterPivot();

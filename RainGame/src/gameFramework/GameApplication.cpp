@@ -18,11 +18,11 @@ namespace rn
 		AssetManager::Get().SetAssetRootDirectory(GetResourceDirectory());
 
 		weak<World> newWorld = LoadWorld<World>();
-		_playerSpaceship = newWorld.lock()->SpawnActor<PlayerSpaceShip>();
+		_playerSpaceship = newWorld.lock()->SpawnActor<PlayerSpaceship>();
 		_playerSpaceship.lock()->SetActorLocation({ 300, 490 });
 		_playerSpaceship.lock()->SetActorRotation(-90.0f);
 
-		weak<SpaceShip> testSpaceship = newWorld.lock()->SpawnActor<SpaceShip>();
+		weak<Spaceship> testSpaceship = newWorld.lock()->SpawnActor<Spaceship>();
 		testSpaceship.lock()->SetTexture("SpaceShooterRedux/PNG/playerShip1_blue.png");
 		testSpaceship.lock()->SetActorLocation(sf::Vector2f{ 100.0f, 50.0f });
 		testSpaceship.lock()->SetTeamID(2);
