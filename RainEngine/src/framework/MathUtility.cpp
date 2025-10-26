@@ -1,5 +1,7 @@
 #include "framework/MathUtility.h"
 
+#include<random>
+
 namespace rn
 {
 	const float PI = 3.1415926535;
@@ -30,7 +32,7 @@ namespace rn
 		return sf::Color(lerpR, lerpG, lerpB, lerpA);
 	}
 
-	sf::Vector2f LerpColor(const sf::Vector2f& a, const sf::Vector2f& b, float alpha)
+	sf::Vector2f LerpVector(const sf::Vector2f& a, const sf::Vector2f& b, float alpha)
 	{
 		float lerpX = LerpFloat(a.x, b.x, alpha);
 		float lerpY = LerpFloat(a.y, b.y, alpha);
@@ -47,5 +49,27 @@ namespace rn
 			alpha = 0;
 
 		return a + (b - a) * alpha;
+	}
+
+	float RandomRange(float min, float max)
+	{
+		std::random_device rd;
+		std::mt19937 gen(rd());
+
+		std::uniform_real_distribution<float> distribution{ min, max };
+
+		return distribution(gen);
+	}
+
+	sf::Vector2f RandomUnitVector()
+	{
+		float rX = RandomRange(-1, 1);
+		float rY = RandomRange(-1, 1);
+
+		sf::Vector2f randVect{ rX, rY };
+
+		Normalize(randVect);
+
+		return randVect;
 	}
 }
