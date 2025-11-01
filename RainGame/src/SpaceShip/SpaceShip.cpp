@@ -1,5 +1,6 @@
 #include "Spaceship/Spaceship.h"
 #include "framework/MathUtility.h"
+#include "VFX/Explosion.h"
 
 namespace rn
 {
@@ -55,7 +56,10 @@ namespace rn
 
 	void Spaceship::Blow()
 	{
+		Explosion* explosion = new Explosion();
+		explosion->SpawnExplosion(GetWorld(), GetActorLocation());
 		Destroy();
+		delete explosion;
 	}
 
 	void Spaceship::Blink()
