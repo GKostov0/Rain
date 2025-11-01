@@ -1,6 +1,7 @@
 #pragma once
 
 #include "framework/World.h"
+#include "framework/TimerManager.h"
 
 namespace rn
 {
@@ -18,6 +19,6 @@ namespace rn
 	private:
 		weak<PlayerSpaceship> _playerSpaceship;
 
-		unsigned int _timerIndex_test;
+		TimerHandle _timerHandle_test;
 	};
 }

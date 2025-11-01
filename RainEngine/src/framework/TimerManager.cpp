@@ -3,7 +3,7 @@
 namespace rn
 {
 	unique<TimerManager> TimerManager::_timerManager{ nullptr };
-	unsigned int TimerManager::_timerIndexCounter = 0;
+	unsigned int TimerHandle::_timerKeyCounter = 0;
 
 	TimerManager::TimerManager()
 		: _timers{}
@@ -41,9 +41,9 @@ namespace rn
 		}
 	}
 
-	void TimerManager::ClearTimer(unsigned int timerIndex)
+	void TimerManager::ClearTimer(TimerHandle timerHandle)
 	{
-		auto it = _timers.find(timerIndex);
+		auto it = _timers.find(timerHandle);
 		if (it != _timers.end())
 		{
 			it->second.SetExpired();
@@ -80,5 +80,15 @@ namespace rn
 	void Timer::SetExpired()
 	{
 		_isExpired = true;
+	}
+
+	TimerHandle::TimerHandle()
+		: _timerKey{ GetNextTimerKey() }
+	{
+	}
+
+	bool operator==(const TimerHandle& left, const TimerHandle& right)
+	{
+		return left.GetTimerKey() == right.GetTimerKey();
 	}
 }
