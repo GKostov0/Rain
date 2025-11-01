@@ -17,5 +17,7 @@ namespace rn
 
 	private:
 		weak<PlayerSpaceship> _playerSpaceship;
+
+		unsigned int _timerIndex_test;
 	};
 }

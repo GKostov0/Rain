@@ -30,19 +30,28 @@ namespace rn
 		static TimerManager& Get();
 
 		template<typename ClassName>
-		void SetTimer(weak<Object> weakReference, void(ClassName::* callback)(), float duration, bool repeat = false)
+		unsigned int SetTimer(weak<Object> weakReference, void(ClassName::* callback)(), float duration, bool repeat = false)
 		{
-			_timers.push_back(Timer{ weakReference, [=] { (static_cast<ClassName*>(weakReference.lock().get())->*callback)(); }, duration, repeat });
+			++_timerIndexCounter;
+			_timers.insert(
+				{
+					_timerIndexCounter, // Key
+					Timer { weakReference, [=] { (static_cast<ClassName*>(weakReference.lock().get())->*callback)(); }, duration, repeat } // Value
+				});
+
+			return _timerIndexCounter;
 		}
 
 		void UpdateTimer(float deltaTime);
+		void ClearTimer(unsigned int timerIndex);
 		
 	protected:
 		TimerManager();
 
 	private:
 		static unique<TimerManager> _timerManager;
+		static unsigned int _timerIndexCounter;
 
-		List<Timer> _timers;
+		Dictionary<unsigned int, Timer> _timers;
 	};
 }

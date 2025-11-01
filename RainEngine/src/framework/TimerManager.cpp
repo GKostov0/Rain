@@ -3,6 +3,7 @@
 namespace rn
 {
 	unique<TimerManager> TimerManager::_timerManager{ nullptr };
+	unsigned int TimerManager::_timerIndexCounter = 0;
 
 	TimerManager::TimerManager()
 		: _timers{}
@@ -26,9 +27,26 @@ namespace rn
 
 	void TimerManager::UpdateTimer(float deltaTime)
 	{
-		for (Timer& timer : _timers)
+		for (auto it = _timers.begin(); it != _timers.end();)
 		{
-			timer.TickTime(deltaTime);
+			if (it->second.Expired())
+			{
+				it = _timers.erase(it);
+			}
+			else
+			{
+				it->second.TickTime(deltaTime);
+				++it;
+			}
+		}
+	}
+
+	void TimerManager::ClearTimer(unsigned int timerIndex)
+	{
+		auto it = _timers.find(timerIndex);
+		if (it != _timers.end())
+		{
+			it->second.SetExpired();
 		}
 	}
 
