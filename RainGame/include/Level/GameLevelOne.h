@@ -15,11 +15,8 @@ namespace rn
 	private:
 		virtual void BeginPlay() override;
 		virtual void InitGameStages() override;
-		void TimerCallbackTest();
 
 	private:
 		weak<PlayerSpaceship> _playerSpaceship;
-
-		TimerHandle _timerHandle_test;
 	};
 }

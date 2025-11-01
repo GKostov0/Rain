@@ -10,7 +10,7 @@ namespace rn
 	{
 	public:
 		Vanguard(World* owner, const std::string& texturePath = "SpaceShooterRedux/PNG/Enemies/enemyBlue3.png",
-					const sf::Vector2f velocity = {0.0f, 50.0f});
+					const sf::Vector2f velocity = {0.0f, 150.0f});
 		
 		virtual void Tick(float deltaTime) override;
 

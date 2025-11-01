@@ -15,7 +15,6 @@ namespace rn
 
 	void GameStage::TickStage(float deltaTime)
 	{
-		LOG("Stage Ticking!");
 	}
 
 	void GameStage::FinishStage()
