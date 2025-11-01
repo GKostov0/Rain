@@ -1,14 +1,16 @@
 #include "framework/Application.h"
 #include "framework/Core.h"
-#include <framework/World.h>
-#include <framework/AssetManager.h>
-#include <framework/PhysicsSystem.h>
+#include "framework/World.h"
+#include "framework/AssetManager.h"
+#include "framework/PhysicsSystem.h"
+#include "framework/TimerManager.h"
 
 namespace rn
 {
     Application::Application(unsigned int windowWidth, unsigned int windowHeight, const std::string& title, std::uint32_t style)
         : _mainWindow{ sf::VideoMode({ windowWidth, windowHeight }), title, style },
-        _targetFrameRate{ 60.0f }, _tickClock{}, _currentWorld{ nullptr }, _cleanCycleClock{}, _cleanCycleInterval{3.0f}
+            _targetFrameRate{ 60.0f }, _tickClock{}, _currentWorld{ nullptr },
+                _cleanCycleClock{}, _cleanCycleInterval{3.0f}
     {
 
     }
@@ -63,6 +65,8 @@ namespace rn
             _currentWorld->BeginPlayInternal();
             _currentWorld->TickInternal(deltaTime);
         }
+
+        TimerManager::Get().UpdateTimer(deltaTime);
 
         PhysicsSystem::Get().Step(deltaTime);
 

@@ -4,7 +4,10 @@ namespace rn
 {
 	unique<TimerManager> TimerManager::_timerManager{ nullptr };
 
-	TimerManager::TimerManager() { }
+	TimerManager::TimerManager()
+		: _timers{}
+	{
+	}
 
 	TimerManager& TimerManager::Get()
 	{
@@ -14,5 +17,50 @@ namespace rn
 		}
 
 		return *_timerManager;
+	}
+
+	Timer::Timer(weak<Object> weakReference, std::function<void()> callback, float duration, bool repeat)
+		: _listener{ weakReference, callback },
+			_duration{ duration }, _repeat{ repeat },
+				_counter{ 0.0f }, _isExpired{false} { }
+
+	void TimerManager::UpdateTimer(float deltaTime)
+	{
+		for (Timer& timer : _timers)
+		{
+			timer.TickTime(deltaTime);
+		}
+	}
+
+	void Timer::TickTime(float deltaTime)
+	{
+		if (Expired())
+			return;
+
+		_counter += deltaTime;
+
+		if (_counter >= _duration)
+		{
+			_listener.second();
+
+			if (_repeat)
+			{
+				_counter = 0.0f;
+			}
+			else
+			{
+				SetExpired();
+			}
+		}
+	}
+
+	bool Timer::Expired() const
+	{
+		return _isExpired || _listener.first.expired() || _listener.first.lock()->IsPendingDestroy();
+	}
+
+	void Timer::SetExpired()
+	{
+		_isExpired = true;
 	}
 }
