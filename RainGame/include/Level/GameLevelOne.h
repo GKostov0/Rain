@@ -14,6 +14,7 @@ namespace rn
 
 	private:
 		virtual void BeginPlay() override;
+		virtual void InitGameStages() override;
 		void TimerCallbackTest();
 
 	private:

@@ -2,12 +2,14 @@
 #include "framework/Core.h"
 #include "framework/Actor.h"
 #include "framework/Application.h"
+#include "gameplay/GameStage.h"
 
 namespace rn
 {
 	World::World(Application* owner)
 		: _owner{ owner }, _beginPlay{false},
-		_pendingActors{}, _actors{}
+			_pendingActors{}, _actors{}, _currentStageIndex{-1},
+				_gameStages{}
 	{
 	}
 
@@ -21,6 +23,8 @@ namespace rn
 		{
 			_beginPlay = true;
 			BeginPlay();
+			InitGameStages();
+			NextGameStage();
 		}
 	}
 
@@ -37,6 +41,11 @@ namespace rn
 		{
 			it->get()->TickInternal(deltaTime);
 			++it;
+		}
+
+		if (_currentStageIndex >= 0 && _currentStageIndex < _gameStages.size())
+		{
+			_gameStages[_currentStageIndex]->TickStage(deltaTime);
 		}
 
 		Tick(deltaTime);
@@ -67,6 +76,47 @@ namespace rn
 			{
 				++it;
 			}
+		}
+
+		for (auto it = _gameStages.begin(); it != _gameStages.end();)
+		{
+			if (it->get()->IsStageFinished())
+			{
+				it = _gameStages.erase(it);
+			}
+			else
+			{
+				++it;
+			}
+		}
+	}
+
+	void World::AddStage(const shared<GameStage>& newStage)
+	{
+		_gameStages.push_back(newStage);
+	}
+
+	void World::InitGameStages()
+	{
+
+	}
+
+	void World::AllGameStageFinished()
+	{
+
+	}
+
+	void World::NextGameStage()
+	{
+		++_currentStageIndex;
+		if (_currentStageIndex >= 0 && _currentStageIndex < _gameStages.size())
+		{
+			_gameStages[_currentStageIndex]->onStageFinished.BindAction(GetWeakReference(), &World::NextGameStage);
+			_gameStages[_currentStageIndex]->StartStage();
+		}
+		else
+		{
+			AllGameStageFinished();
 		}
 	}
 

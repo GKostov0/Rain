@@ -5,6 +5,8 @@
 #include "framework/TimerManager.h"
 #include "framework/World.h"
 
+#include "gameplay/GameStage.h"
+
 #include "Player/PlayerSpaceship.h"
 
 namespace rn
@@ -23,6 +25,11 @@ namespace rn
 	void GameLevelOne::BeginPlay()
 	{
 		_timerHandle_test = TimerManager::Get().SetTimer(GetWeakReference(), &GameLevelOne::TimerCallbackTest, 1.0f, true);
+	}
+
+	void GameLevelOne::InitGameStages()
+	{
+		AddStage(shared<GameStage>{ new GameStage{ this } });
 	}
 
 	void GameLevelOne::TimerCallbackTest()

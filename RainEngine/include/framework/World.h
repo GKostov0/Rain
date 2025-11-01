@@ -8,6 +8,7 @@ namespace rn
 {
 	class Actor;
 	class Application;
+	class GameStage;
 
 	class World : public Object
 	{
@@ -27,6 +28,13 @@ namespace rn
 
 		void CleanCycle();
 
+		void AddStage(const shared<GameStage>& newStage);
+
+	private:
+		virtual void InitGameStages();
+		virtual void AllGameStageFinished();
+		void NextGameStage();
+
 	private:
 
 		virtual void BeginPlay();
@@ -37,6 +45,9 @@ namespace rn
 
 		List<shared<Actor>> _actors;
 		List<shared<Actor>> _pendingActors;
+		List<shared<GameStage>> _gameStages;
+
+		int _currentStageIndex;
 	};
 
 	template<typename A, typename... Args>
