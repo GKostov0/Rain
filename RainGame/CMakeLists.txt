@@ -28,6 +28,9 @@ add_executable(${RAIN_GAME_TARGET_NAME}
 
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Enemy/Vanguard.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Enemy/Vanguard.cpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Level/GameLevelOne.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Level/GameLevelOne.cpp
 )
 
 target_include_directories(${RAIN_GAME_TARGET_NAME} PUBLIC
