@@ -2,6 +2,12 @@ add_library(${RAIN_ENGINE_TARGET_NAME} STATIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/Application.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/Application.cpp
 
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/Core.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/Core.cpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/Delegate.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/Delegate.cpp
+
     ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/World.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/World.cpp
 
@@ -17,17 +23,14 @@ add_library(${RAIN_ENGINE_TARGET_NAME} STATIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/MathUtility.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/MathUtility.cpp
 
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/EntryPoint.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/EntryPoint.cpp
-
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/Core.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/Core.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/TimerManager.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/TimerManager.cpp
 
     ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/PhysicsSystem.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/PhysicsSystem.cpp
 
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/Delegate.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/Delegate.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/EntryPoint.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/EntryPoint.cpp
 
     ${CMAKE_CURRENT_SOURCE_DIR}/include/VFX/Particle.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/VFX/Particle.cpp

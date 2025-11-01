@@ -12,6 +12,10 @@ namespace rn
 		GameLevelOne(Application* owner);
 
 	private:
+		virtual void BeginPlay() override;
+		void TimerCallbackTest();
+
+	private:
 		weak<PlayerSpaceship> _playerSpaceship;
 	};
 }
