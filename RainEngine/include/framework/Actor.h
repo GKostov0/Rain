@@ -42,7 +42,7 @@ namespace rn
 		const World* GetWorld() const { return _owner; }
 		World* GetWorld() { return _owner; }
 
-		bool IsActorOutOfBounds() const;
+		bool IsActorOutOfBounds(float tolerance = 10.0f) const;
 
 		void SetEnablePhysics(bool enable);
 

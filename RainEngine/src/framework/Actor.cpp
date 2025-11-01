@@ -121,7 +121,7 @@ namespace rn
 		return _owner->GetWindowSize();
 	}
 
-	bool Actor::IsActorOutOfBounds() const
+	bool Actor::IsActorOutOfBounds(float tolerance) const
 	{
 		float windowWidth = GetWindowSize().x;
 		float windowHeight = GetWindowSize().y;
@@ -132,13 +132,13 @@ namespace rn
 		sf::Vector2f actorPosition = GetActorLocation();
 
 		// Left						   or	Right
-		if ((actorPosition.x < -width) || (actorPosition.x > windowWidth + width))
+		if ((actorPosition.x < -width - tolerance) || (actorPosition.x > windowWidth + width + tolerance))
 		{
 			return true;
 		}
 
 		// Up							or	Down
-		if ((actorPosition.y < -height) || (actorPosition.y > windowHeight + height))
+		if ((actorPosition.y < -height - tolerance) || (actorPosition.y > windowHeight + height + tolerance))
 		{
 			return true;
 		}
@@ -178,6 +178,9 @@ namespace rn
 
 	bool Actor::IsOtherHostile(Actor* other) const
 	{
+		if (other == nullptr)
+			return false;
+
 		if (GetTeamID() == GetNeutralTeamID() || other->GetTeamID() == GetNeutralTeamID())
 		{
 			return false;
