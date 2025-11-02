@@ -3,6 +3,7 @@
 #include "Enemy/VanguardStage.h"
 #include "Enemy/TwinBladeStage.h"
 #include "Enemy/HexagonStage.h"
+#include "Enemy/UFOStage.h"
 
 #include "framework/Actor.h"
 #include "framework/AssetManager.h"
@@ -38,6 +39,9 @@ namespace rn
 
 		AddStage(shared<WaitStage>{ new WaitStage{ this, 2.0f } });
 		AddStage(shared<HexagonStage>{ new HexagonStage{ this } });			// Hexagons
+
+		AddStage(shared<WaitStage>{ new WaitStage{ this, 2.0f } });
+		AddStage(shared<UFOStage>{ new UFOStage{ this } });					// UFOs
 
 		AddStage(shared<WaitStage>{ new WaitStage{ this, 2.0f } });
 	}

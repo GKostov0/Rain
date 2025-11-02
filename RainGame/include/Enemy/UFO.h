@@ -6,11 +6,12 @@ namespace rn
 {
 	class BulletShooter;
 
-	class UFO : EnemySpaceship
+	class UFO : public EnemySpaceship
 	{
 	public:
-		UFO(World* owner, const std::string& texturePath = "SpaceShooterRedux/PNG/ufoRed.png",
-			const sf::Vector2f& velocity = {0.0f, 100.0f}, float rotationSpeed = 40.0f);
+		UFO(World* owner, const sf::Vector2f& velocity, 
+			const std::string& texturePath = "SpaceShooterRedux/PNG/ufoRed.png",
+			float rotationSpeed = 40.0f);
 
 		virtual void Tick(float deltaTime) override;
 

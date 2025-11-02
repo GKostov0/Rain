@@ -47,6 +47,9 @@ add_executable(${RAIN_GAME_TARGET_NAME}
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Enemy/HexagonStage.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Enemy/HexagonStage.cpp
 
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Enemy/UFOStage.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Enemy/UFOStage.cpp
+
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Level/GameLevelOne.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Level/GameLevelOne.cpp
 )
