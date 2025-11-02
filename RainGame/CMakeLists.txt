@@ -35,6 +35,9 @@ add_executable(${RAIN_GAME_TARGET_NAME}
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Enemy/Hexagon.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Enemy/Hexagon.cpp
 
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Enemy/UFO.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Enemy/UFO.cpp
+
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Enemy/VanguardStage.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Enemy/VanguardStage.cpp
 
