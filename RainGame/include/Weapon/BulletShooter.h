@@ -7,7 +7,8 @@ namespace rn
 	class BulletShooter : public Shooter
 	{
 	public:
-		BulletShooter(Actor* owner, float cooldownTime = 1.0f);
+		BulletShooter(Actor* owner, float cooldownTime = 1.0f,
+			const sf::Vector2f& localPositionOffset = {0.0f, 0.0f}, float localRotationOffset = 0.0f);
 
 		virtual bool IsOnCooldown() const override;
 		virtual void ShooterImpl() override;
@@ -15,5 +16,7 @@ namespace rn
 	private:
 		sf::Clock _cooldownClock;
 		float _cooldownTime;
+		sf::Vector2f _localPositionOffset;
+		float _localRotationOffset;
 	};
 }

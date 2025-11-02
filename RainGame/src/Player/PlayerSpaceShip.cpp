@@ -6,7 +6,8 @@
 namespace rn
 {
 	PlayerSpaceship::PlayerSpaceship(World* owner, const std::string& path)
-		: Spaceship{ owner, path }, _moveInput{}, _speed{ 400.0f }, _shooter{ new BulletShooter{this, 0.1f} }
+		: Spaceship{ owner, path }, _moveInput{}, _speed{ 400.0f },
+			_shooter{ new BulletShooter{this, 0.1f, {50.0f, 0.0f}} }
 	{
 		SetTeamID(1);
 	}
