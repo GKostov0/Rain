@@ -4,7 +4,8 @@
 namespace rn
 {
 	GameStage::GameStage(World* world)
-		: _owner{ world }, _stageFinished{false}
+		: _owner{ world },
+		_stageFinished{false}
 	{
 	}
 

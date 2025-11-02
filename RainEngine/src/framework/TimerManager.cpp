@@ -22,8 +22,12 @@ namespace rn
 
 	Timer::Timer(weak<Object> weakReference, std::function<void()> callback, float duration, bool repeat)
 		: _listener{ weakReference, callback },
-			_duration{ duration }, _repeat{ repeat },
-				_counter{ 0.0f }, _isExpired{false} { }
+		_duration{ duration },
+		_repeat{ repeat },
+		_counter{ 0.0f },
+		_isExpired{false} 
+	{
+	}
 
 	void TimerManager::UpdateTimer(float deltaTime)
 	{

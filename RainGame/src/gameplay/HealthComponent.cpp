@@ -5,7 +5,8 @@
 namespace rn
 {
 	HealthComponent::HealthComponent(float currentHealt, float maxHealth)
-		: _currentHealth{ currentHealt }, _maxHealth{maxHealth}
+		: _currentHealth{ currentHealt },
+		_maxHealth{maxHealth}
 	{
 
 	}

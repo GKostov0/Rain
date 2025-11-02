@@ -10,9 +10,17 @@ namespace rn
 							float sizeMin, float sizeMax, float speedMin, float speedMax,
 								const sf::Color& particleColor, const List<std::string>& particleImagePaths)
 
-			: _particleAmount{ particleAmount }, _lifeTimeMin{ lifeTimeMin }, _lifeTimeMax{lifeTimeMax},
-				_sizeMin{ sizeMin }, _sizeMax{ sizeMax }, _speedMin{ speedMin }, _speedMax{speedMax},
-					_particleColor{ particleColor }, _particleImagePaths { particleImagePaths } { }
+		: _particleAmount{ particleAmount },
+		_lifeTimeMin{ lifeTimeMin },
+		_lifeTimeMax{lifeTimeMax},
+		_sizeMin{ sizeMin },
+		_sizeMax{ sizeMax },
+		_speedMin{ speedMin },
+		_speedMax{speedMax},
+		_particleColor{ particleColor },
+		_particleImagePaths { particleImagePaths } 
+	{
+	}
 
 	void Explosion::SpawnExplosion(World* world, const sf::Vector2f& location)
 	{

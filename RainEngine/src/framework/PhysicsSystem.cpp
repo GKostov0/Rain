@@ -72,8 +72,11 @@ namespace rn
 	}
 
 	PhysicsSystem::PhysicsSystem()
-		: _physicsWorld{ b2Vec2{0.0f,0.0f} }, _physicsScale{0.01f},
-		_velocityIterations{ 8 }, _positionIterations{ 3 }, _contactListener{},
+		: _physicsWorld{ b2Vec2{0.0f,0.0f} },
+		_physicsScale{0.01f},
+		_velocityIterations{ 8 },
+		_positionIterations{ 3 },
+		_contactListener{},
 		_pendingReoveListeners{}
 	{
 		_physicsWorld.SetContactListener(&_contactListener);

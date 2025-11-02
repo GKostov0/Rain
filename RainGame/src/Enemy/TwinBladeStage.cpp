@@ -6,10 +6,14 @@
 namespace rn
 {
 	TwinBladeStage::TwinBladeStage(World* owner)
-		: GameStage{ owner }, _spawnInterval{ 1.5f }, _spawnDistanceToCenter{100.0f},
-			_leftSpawnLocation{ owner->GetWindowSize().x / 2.0f - _spawnDistanceToCenter, -100.0f },
-				_rightSpawnLocation{owner->GetWindowSize().x / 2.0f + _spawnDistanceToCenter, - 100.0f},
-					_spawnLocation{_leftSpawnLocation}, _spawnAmount{ 10 }, _currentSpawnCount{0}
+		: GameStage{ owner },
+		_spawnInterval{ 1.5f },
+		_spawnDistanceToCenter{100.0f},
+		_leftSpawnLocation{ owner->GetWindowSize().x / 2.0f - _spawnDistanceToCenter, -100.0f },
+		_rightSpawnLocation{owner->GetWindowSize().x / 2.0f + _spawnDistanceToCenter, - 100.0f},
+		_spawnLocation{_leftSpawnLocation},
+		_spawnAmount{ 10 },
+		_currentSpawnCount{0}
 	{
 	}
 

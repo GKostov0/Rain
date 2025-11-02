@@ -3,8 +3,10 @@
 namespace rn
 {
 	Bullet::Bullet(World* world, Actor* owner, const std::string& texturePath, float speed, float damage)
-		: Actor{ world, texturePath }, _owner{ owner }, 
-		_speed{ speed }, _damage{ damage }
+		: Actor{ world, texturePath },
+		_owner{ owner }, 
+		_speed{ speed },
+		_damage{ damage }
 	{
 		SetTeamID(owner->GetTeamID());
 	}

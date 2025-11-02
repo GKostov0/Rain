@@ -4,7 +4,10 @@
 namespace rn
 {
 	Particle::Particle(World* owner, const std::string& path)
-		: Actor{ owner, path }, _velocity{}, _lifetime{ 1.0f }, _timer{}
+		: Actor{ owner, path },
+		_velocity{},
+		_lifetime{ 1.0f },
+		_timer{}
 	{
 	}
 

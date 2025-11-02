@@ -8,9 +8,13 @@
 namespace rn
 {
     Application::Application(unsigned int windowWidth, unsigned int windowHeight, const std::string& title, std::uint32_t style)
-        : _mainWindow{ sf::VideoMode({ windowWidth, windowHeight }), title, style },
-            _targetFrameRate{ 60.0f }, _tickClock{}, _currentWorld{ nullptr },
-                _cleanCycleClock{}, _cleanCycleInterval{3.0f}
+        : _mainWindow{ sf::VideoMode({ windowWidth, windowHeight }),
+        title, style },
+        _targetFrameRate{ 60.0f },
+        _tickClock{},
+        _currentWorld{ nullptr },
+        _cleanCycleClock{},
+        _cleanCycleInterval{3.0f}
     {
 
     }

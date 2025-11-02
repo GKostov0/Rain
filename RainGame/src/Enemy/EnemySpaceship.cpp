@@ -3,7 +3,8 @@
 namespace rn
 {
 	EnemySpaceship::EnemySpaceship(World* owner, const std::string& texturePath, float collisionDamage)
-		: Spaceship{ owner, texturePath }, _collisionDamage{ collisionDamage }
+		: Spaceship{ owner, texturePath },
+		_collisionDamage{ collisionDamage }
 	{
 		SetTeamID(2);
 	}

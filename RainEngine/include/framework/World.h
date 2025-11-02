@@ -34,6 +34,7 @@ namespace rn
 		virtual void InitGameStages();
 		virtual void AllGameStageFinished();
 		void NextGameStage();
+		void StartStagets();
 
 	private:
 
@@ -47,7 +48,7 @@ namespace rn
 		List<shared<Actor>> _pendingActors;
 		List<shared<GameStage>> _gameStages;
 
-		int _currentStageIndex;
+		List<shared<GameStage>>::iterator _currentStage;
 	};
 
 	template<typename A, typename... Args>

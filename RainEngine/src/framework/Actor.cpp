@@ -10,8 +10,13 @@
 namespace rn
 {
 	Actor::Actor(World* owner, const std::string& texturePath)
-		: _owner{ owner }, _beginPlay{ false }, _texture{ }, _sprite{ },
-		_physicsBody{ nullptr }, _physicsEnabled{ false }, _teamID{GetNeutralTeamID()}
+		: _owner{ owner },
+		_beginPlay{ false },
+		_texture{ },
+		_sprite{ },
+		_physicsBody{ nullptr },
+		_physicsEnabled{ false },
+		_teamID{GetNeutralTeamID()}
 	{
 		SetTexture(texturePath);
 	}

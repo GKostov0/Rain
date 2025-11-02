@@ -10,6 +10,7 @@
 #include "framework/World.h"
 
 #include "gameplay/GameStage.h"
+#include "gameplay/WaitStage.h"
 
 #include "Player/PlayerSpaceship.h"
 
@@ -29,7 +30,10 @@ namespace rn
 
 	void GameLevelOne::InitGameStages()
 	{
+		AddStage(shared<WaitStage>{ new WaitStage{ this, 2.0f } });
 		AddStage(shared<VanguardStage>{ new VanguardStage{ this } });
+		AddStage(shared<WaitStage>{ new WaitStage{ this, 2.0f } });
 		AddStage(shared<TwinBladeStage>{ new TwinBladeStage{ this } });
+		AddStage(shared<WaitStage>{ new WaitStage{ this, 2.0f } });
 	}
 }

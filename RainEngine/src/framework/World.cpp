@@ -7,9 +7,12 @@
 namespace rn
 {
 	World::World(Application* owner)
-		: _owner{ owner }, _beginPlay{false},
-			_pendingActors{}, _actors{}, _currentStageIndex{-1},
-				_gameStages{}
+		: _owner{ owner },
+		_beginPlay{false},
+		_pendingActors{},
+		_actors{},
+		_gameStages{},
+		_currentStage{_gameStages.end()}
 	{
 	}
 
@@ -24,7 +27,7 @@ namespace rn
 			_beginPlay = true;
 			BeginPlay();
 			InitGameStages();
-			NextGameStage();
+			StartStagets();
 		}
 	}
 
@@ -43,9 +46,9 @@ namespace rn
 			++it;
 		}
 
-		if (_currentStageIndex >= 0 && _currentStageIndex < _gameStages.size())
+		if (_currentStage != _gameStages.end())
 		{
-			_gameStages[_currentStageIndex]->TickStage(deltaTime);
+			_currentStage->get()->TickStage(deltaTime);
 		}
 
 		Tick(deltaTime);
@@ -77,18 +80,6 @@ namespace rn
 				++it;
 			}
 		}
-
-		for (auto it = _gameStages.begin(); it != _gameStages.end();)
-		{
-			if (it->get()->IsStageFinished())
-			{
-				it = _gameStages.erase(it);
-			}
-			else
-			{
-				++it;
-			}
-		}
 	}
 
 	void World::AddStage(const shared<GameStage>& newStage)
@@ -103,21 +94,30 @@ namespace rn
 
 	void World::AllGameStageFinished()
 	{
-
+		LOG("All stages Finished!");
 	}
 
 	void World::NextGameStage()
 	{
-		++_currentStageIndex;
-		if (_currentStageIndex >= 0 && _currentStageIndex < _gameStages.size())
+		_currentStage = _gameStages.erase(_currentStage);
+
+		if (_currentStage != _gameStages.end())
 		{
-			_gameStages[_currentStageIndex]->onStageFinished.BindAction(GetWeakReference(), &World::NextGameStage);
-			_gameStages[_currentStageIndex]->StartStage();
+			_currentStage->get()->StartStage();
+			_currentStage->get()->onStageFinished.BindAction(GetWeakReference(), &World::NextGameStage);
 		}
 		else
 		{
 			AllGameStageFinished();
 		}
+	}
+
+	void World::StartStagets()
+	{
+		_currentStage = _gameStages.begin();
+
+		_currentStage->get()->StartStage();
+		_currentStage->get()->onStageFinished.BindAction(GetWeakReference(), &World::NextGameStage);
 	}
 
 	void World::BeginPlay()

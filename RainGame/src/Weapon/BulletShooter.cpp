@@ -7,8 +7,11 @@ namespace rn
 {
 	BulletShooter::BulletShooter(Actor* owner, float cooldownTime,
 		const sf::Vector2f& localPositionOffset, float localRotationOffset)
-		: Shooter{ owner }, _cooldownClock{}, _cooldownTime{ cooldownTime },
-			_localPositionOffset{ localPositionOffset }, _localRotationOffset{ localRotationOffset }
+		: Shooter{ owner },
+		_cooldownClock{},
+		_cooldownTime{ cooldownTime },
+		_localPositionOffset{ localPositionOffset },
+		_localRotationOffset{ localRotationOffset }
 	{
 
 	}

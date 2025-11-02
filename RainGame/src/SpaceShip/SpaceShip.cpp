@@ -5,8 +5,12 @@
 namespace rn
 {
 	Spaceship::Spaceship(World* owner, const std::string& texturePath)
-		: Actor{ owner, texturePath }, _velocity{}, _healthComponent{100.0f, 100.0f},
-		_blinkTimer{ 0.0f }, _blinkDuration{ 0.4f }, _blinkColor{255, 0, 0 , 255}
+		: Actor{ owner, texturePath },
+		_velocity{},
+		_healthComponent{100.0f, 100.0f},
+		_blinkTimer{ 0.0f },
+		_blinkDuration{ 0.4f },
+		_blinkColor{255, 0, 0 , 255}
 	{
 
 	}

@@ -6,9 +6,17 @@
 namespace rn
 {
 	VanguardStage::VanguardStage(World* owner)
-		: GameStage{ owner }, _spawnInterval{ 1.2f }, _switchInterval{2.0f},
-			_spawnDistanceToEdge{ 100.0f }, _leftSpawnLocation{}, _rightSpawnLocation{},
-				_spawnLocation{}, _rowsToSpawn{ 4 }, _rowSpawnCount{}, _vanguardPerRow{ 5 }, _currentRowVanguardCount{}
+		: GameStage{ owner },
+		_spawnInterval{ 1.2f },
+		_switchInterval{2.0f},
+		_spawnDistanceToEdge{ 100.0f },
+		_leftSpawnLocation{},
+		_rightSpawnLocation{},
+		_spawnLocation{},
+		_rowsToSpawn{ 2 },
+		_rowSpawnCount{},
+		_vanguardPerRow{ 5 },
+		_currentRowVanguardCount{}
 	{
 	}
 
