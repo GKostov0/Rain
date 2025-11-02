@@ -13,7 +13,7 @@ namespace rn
 	{
 		Spaceship::Tick(deltaTime);
 
-		if (IsActorOutOfBounds(GetActorGlobalBounds().width))
+		if (IsActorOutOfBounds(GetActorGlobalBounds().width * 2.0f))
 		{
 			Destroy();
 		}

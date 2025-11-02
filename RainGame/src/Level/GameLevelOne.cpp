@@ -1,8 +1,8 @@
 #include "Level/GameLevelOne.h"
 
-#include "Enemy/Vanguard.h"
 #include "Enemy/VanguardStage.h"
 #include "Enemy/TwinBladeStage.h"
+#include "Enemy/HexagonStage.h"
 
 #include "framework/Actor.h"
 #include "framework/AssetManager.h"
@@ -31,9 +31,14 @@ namespace rn
 	void GameLevelOne::InitGameStages()
 	{
 		AddStage(shared<WaitStage>{ new WaitStage{ this, 2.0f } });
-		AddStage(shared<VanguardStage>{ new VanguardStage{ this } });
+		AddStage(shared<VanguardStage>{ new VanguardStage{ this } });		// Vanguards
+
 		AddStage(shared<WaitStage>{ new WaitStage{ this, 2.0f } });
-		AddStage(shared<TwinBladeStage>{ new TwinBladeStage{ this } });
+		AddStage(shared<TwinBladeStage>{ new TwinBladeStage{ this } });		// Twin Blades
+
+		AddStage(shared<WaitStage>{ new WaitStage{ this, 2.0f } });
+		AddStage(shared<HexagonStage>{ new HexagonStage{ this } });			// Hexagons
+
 		AddStage(shared<WaitStage>{ new WaitStage{ this, 2.0f } });
 	}
 }
