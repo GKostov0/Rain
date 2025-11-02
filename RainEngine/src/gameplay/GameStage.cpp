@@ -19,9 +19,9 @@ namespace rn
 
 	void GameStage::FinishStage()
 	{
-		onStageFinished.Broadcast();
 		_stageFinished = true;
 		StageFinished();
+		onStageFinished.Broadcast();
 	}
 
 	void GameStage::StageFinished()

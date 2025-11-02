@@ -2,6 +2,7 @@
 
 #include "Enemy/Vanguard.h"
 #include "Enemy/VanguardStage.h"
+#include "Enemy/TwinBladeStage.h"
 
 #include "framework/Actor.h"
 #include "framework/AssetManager.h"
@@ -29,5 +30,6 @@ namespace rn
 	void GameLevelOne::InitGameStages()
 	{
 		AddStage(shared<VanguardStage>{ new VanguardStage{ this } });
+		AddStage(shared<TwinBladeStage>{ new TwinBladeStage{ this } });
 	}
 }
