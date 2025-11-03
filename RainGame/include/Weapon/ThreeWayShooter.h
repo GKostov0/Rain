@@ -9,7 +9,7 @@ namespace rn
 	class ThreeWayShooter : public Shooter
 	{
 	public:
-		ThreeWayShooter(Actor* owner, float cooldownTime = 0.3f,
+		ThreeWayShooter(Actor* owner, float cooldownTime = 0.6f,
 			const sf::Vector2f& localOffset = {0.0f, 0.0f});
 
 	private:

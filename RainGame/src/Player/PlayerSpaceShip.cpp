@@ -3,6 +3,7 @@
 #include "framework/MathUtility.h"
 #include "Weapon/BulletShooter.h"
 #include "Weapon/ThreeWayShooter.h"
+#include "Weapon/FrontalWiper.h"
 
 namespace rn
 {
@@ -10,7 +11,7 @@ namespace rn
 		: Spaceship{ owner, path },
 		_moveInput{},
 		_speed{ 400.0f },
-		_shooter{ new ThreeWayShooter{this, 0.1f, {50.0f, 0.0f}} }
+		_shooter{ new FrontalWiper{this, 0.15f, {50.0f, 0.0f}} }
 	{
 		SetTeamID(1);
 	}
