@@ -18,6 +18,8 @@ namespace rn
 
 		virtual void Shoot() override;
 
+		void SetShooter(unique<Shooter>&& newShooter);
+
 	private:
 		void HandleInput();
 		void ConsumeInput(float deltaTime);

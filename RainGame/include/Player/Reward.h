@@ -8,6 +8,7 @@ namespace rn
 {
 	class PlayerSpaceship;
 	using RewardFunction = std::function<void(PlayerSpaceship*)>;
+	using RewardFactoryFunc = std::function<weak<Reward>(World*)>;
 
 	class Reward : public Actor
 	{
@@ -25,4 +26,14 @@ namespace rn
 		float _speed;
 		RewardFunction _rewardFunction;
 	};
+
+	weak<Reward> CreateHealthReward(World* world);
+	weak<Reward> CreateThreeWayShooterReward(World* world);
+	weak<Reward> CreateFrontalWiperReward(World* world);
+
+	weak<Reward> CrateReward(World* world, const std::string& texturePath, RewardFunction rewardFunctuion);
+
+	void RewardHealth(PlayerSpaceship* player);
+	void RewardThreeWayShooter(PlayerSpaceship* player);
+	void RewardFrontalWiper(PlayerSpaceship* player);
 }

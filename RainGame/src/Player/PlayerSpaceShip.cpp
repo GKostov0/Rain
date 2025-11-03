@@ -31,6 +31,11 @@ namespace rn
 		}
 	}
 
+	void PlayerSpaceship::SetShooter(unique<Shooter>&& newShooter)
+	{
+		_shooter = std::move(newShooter);
+	}
+
 	void PlayerSpaceship::HandleInput()
 	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))

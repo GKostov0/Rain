@@ -19,6 +19,8 @@ namespace rn
 		virtual void Shoot();
 		virtual void ApplyDamage(float amount) override;
 
+		HealthComponent& GetHealthComponent() { return _healthComponent; }
+
 	private:
 		virtual void OnHealthChanged(float amount, float currentHelath, float maxHealth);
 		virtual void OnTakenDamage(float amount, float currentHelath, float maxHealth);
