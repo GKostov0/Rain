@@ -2,6 +2,7 @@
 #include "Player/PlayerSpaceship.h"
 #include "framework/MathUtility.h"
 #include "Weapon/BulletShooter.h"
+#include "Weapon/ThreeWayShooter.h"
 
 namespace rn
 {
@@ -9,7 +10,7 @@ namespace rn
 		: Spaceship{ owner, path },
 		_moveInput{},
 		_speed{ 400.0f },
-		_shooter{ new BulletShooter{this, 0.1f, {50.0f, 0.0f}} }
+		_shooter{ new ThreeWayShooter{this, 0.1f, {50.0f, 0.0f}} }
 	{
 		SetTeamID(1);
 	}

@@ -4,7 +4,7 @@
 
 namespace rn
 {
-	class BulletShooter;
+	class Shooter;
 
 	class PlayerSpaceship : public Spaceship
 	{
@@ -28,6 +28,6 @@ namespace rn
 		sf::Vector2f _moveInput;
 		float _speed;
 
-		unique<BulletShooter> _shooter;
+		unique<Shooter> _shooter;
 	};
 }
