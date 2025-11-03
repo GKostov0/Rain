@@ -8,6 +8,9 @@ add_executable(${RAIN_GAME_TARGET_NAME}
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Player/PlayerspaceShip.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Player/PlayerspaceShip.cpp
 
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Player/Reward.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Player/Reward.cpp
+
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Weapon/Shooter.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Weapon/Shooter.cpp
 
