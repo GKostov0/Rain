@@ -5,8 +5,11 @@ add_executable(${RAIN_GAME_TARGET_NAME}
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Spaceship/Spaceship.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Spaceship/Spaceship.cpp
 
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/Player/PlayerspaceShip.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/Player/PlayerspaceShip.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Player/PlayerSpaceship.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Player/PlayerSpaceship.cpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Player/Player.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Player/Player.cpp
 
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Player/Reward.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Player/Reward.cpp
