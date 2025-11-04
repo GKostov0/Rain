@@ -12,6 +12,8 @@ namespace rn
 		FrontalWiper(Actor* owner, float cooldownTime = 0.1f,
 						const sf::Vector2f& localOffset = { 0.0f, 0.0f }, float width = 60.0f);
 
+		virtual void IncrementLevel(int amount = 1) override;
+
 	private:
 		virtual void ShooterImpl() override;
 
@@ -22,5 +24,8 @@ namespace rn
 		unique<BulletShooter> _shooter2;
 		unique<BulletShooter> _shooter3;
 		unique<BulletShooter> _shooter4;
+
+		unique<BulletShooter> _shooter5;
+		unique<BulletShooter> _shooter6;
 	};
 }

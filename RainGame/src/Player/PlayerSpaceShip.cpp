@@ -11,7 +11,7 @@ namespace rn
 		: Spaceship{ owner, path },
 		_moveInput{},
 		_speed{ 400.0f },
-		_shooter{ new FrontalWiper{this, 0.15f, {50.0f, 0.0f}} }
+		_shooter{ new BulletShooter{this, 0.15f, {50.0f, 0.0f}} }
 	{
 		SetTeamID(1);
 	}
@@ -33,6 +33,12 @@ namespace rn
 
 	void PlayerSpaceship::SetShooter(unique<Shooter>&& newShooter)
 	{
+		if (_shooter && typeid(*_shooter.get()) == typeid(*newShooter.get()))
+		{
+			_shooter->IncrementLevel();
+			return;
+		}
+
 		_shooter = std::move(newShooter);
 	}
 

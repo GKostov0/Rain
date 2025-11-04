@@ -15,6 +15,8 @@ namespace rn
 
 		void SetBulletTexturePath(const std::string& newTexturePath);
 
+		virtual void IncrementLevel(int amount = 1) override;
+
 	private:
 		sf::Clock _cooldownClock;
 		float _cooldownTime;

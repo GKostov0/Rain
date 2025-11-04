@@ -14,6 +14,11 @@ namespace rn
 
 		Actor* GetOwner() const { return _owner; }
 
+		int GetCurrentLevel() const { return _currentLevel; }
+		int GetMaxLevel() const { return _maxLevel; }
+
+		virtual void IncrementLevel(int amount = 1);
+
 	protected:
 		Shooter(Actor* owner);
 
@@ -22,5 +27,8 @@ namespace rn
 
 	private:
 		Actor* _owner;
+
+		int _currentLevel;
+		int _maxLevel;
 	};
 }

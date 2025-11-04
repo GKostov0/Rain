@@ -19,7 +19,7 @@ namespace rn
 
 	bool BulletShooter::IsOnCooldown() const
 	{
-		if (_cooldownClock.getElapsedTime().asSeconds() > _cooldownTime)
+		if (_cooldownClock.getElapsedTime().asSeconds() > _cooldownTime / GetCurrentLevel())
 		{
 			return false;
 		}
@@ -41,5 +41,10 @@ namespace rn
 	void BulletShooter::SetBulletTexturePath(const std::string& newTexturePath)
 	{
 		_bulletTextuePath = newTexturePath;
+	}
+
+	void BulletShooter::IncrementLevel(int amount)
+	{
+		Shooter::IncrementLevel(amount);
 	}
 }
