@@ -7,6 +7,8 @@
 namespace rn
 {
 	class PlayerSpaceship;
+	class Reward;
+
 	using RewardFunction = std::function<void(PlayerSpaceship*)>;
 	using RewardFactoryFunc = std::function<weak<Reward>(World*)>;
 

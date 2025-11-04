@@ -9,6 +9,7 @@ namespace rn
 {
 	Reward::Reward(World* owner, const std::string& texturePath, RewardFunction rewardFunction, float speed)
 		: Actor{owner, texturePath },
+		_speed{speed},
 		_rewardFunction{ rewardFunction }
 	{
 
@@ -27,10 +28,11 @@ namespace rn
 
 	void Reward::OnActorBeginOverlap(Actor* other)
 	{
-		PlayerSpaceship* player = static_cast<PlayerSpaceship*>(other);
+		PlayerSpaceship* player = dynamic_cast<PlayerSpaceship*>(other);
 		if (player != nullptr && !player->IsPendingDestroy())
 		{
 			_rewardFunction(player);
+			Destroy();
 		}
 	}
 

@@ -62,8 +62,13 @@ namespace rn
 	{
 		Explosion* explosion = new Explosion();
 		explosion->SpawnExplosion(GetWorld(), GetActorLocation());
+		Blew();
 		Destroy();
 		delete explosion;
+	}
+
+	void Spaceship::Blew()
+	{
 	}
 
 	void Spaceship::Blink()

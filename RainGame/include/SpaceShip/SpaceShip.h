@@ -24,7 +24,9 @@ namespace rn
 	private:
 		virtual void OnHealthChanged(float amount, float currentHelath, float maxHealth);
 		virtual void OnTakenDamage(float amount, float currentHelath, float maxHealth);
-		virtual void Blow();
+		
+		void Blow();
+		virtual void Blew();
 
 		void Blink();
 		void UpdateBlink(float deltaTime);
