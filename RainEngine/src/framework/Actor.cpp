@@ -178,6 +178,7 @@ namespace rn
 	void Actor::Destroy()
 	{
 		UnInitializePhysics();
+		onActorDestroy.Broadcast(this);
 		Object::Destroy();
 	}
 

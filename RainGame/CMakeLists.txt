@@ -11,6 +11,9 @@ add_executable(${RAIN_GAME_TARGET_NAME}
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Player/Player.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Player/Player.cpp
 
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Player/PlayerManager.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Player/PlayerManager.cpp
+
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Player/Reward.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Player/Reward.cpp
 

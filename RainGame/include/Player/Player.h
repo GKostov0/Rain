@@ -18,7 +18,7 @@ namespace rn
 
 		void AddLifeCount(unsigned int count);
 		int GetLifeCount() const { return _lifeCount; }
-		int AddScore(unsigned int amount);
+		void AddScore(unsigned int amount);
 		int GetScore() const { return _score; }
 
 		Delegate<int> onLifeChange;

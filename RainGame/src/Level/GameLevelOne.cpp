@@ -14,19 +14,20 @@
 #include "gameplay/WaitStage.h"
 
 #include "Player/PlayerSpaceship.h"
+#include "Player/PlayerManager.h"
 
 namespace rn
 {
 	GameLevelOne::GameLevelOne(Application* owner)
 		: World{owner}
 	{
-		_playerSpaceship = SpawnActor<PlayerSpaceship>();
-		_playerSpaceship.lock()->SetActorLocation({ 300, 490 });
-		_playerSpaceship.lock()->SetActorRotation(-90.0f);
 	}
 
 	void GameLevelOne::BeginPlay()
 	{
+		Player newPlayer = PlayerManager::Get().CreateNewPlayer();
+		_playerSpaceship = newPlayer.SpawnSpaceship(this);
+		_playerSpaceship.lock()->onActorDestroy.BindAction(GetWeakReference(), &GameLevelOne::PlayerSpaceshipDestroyed);
 	}
 
 	void GameLevelOne::InitGameStages()
@@ -44,5 +45,23 @@ namespace rn
 		AddStage(shared<UFOStage>{ new UFOStage{ this } });					// UFOs
 
 		AddStage(shared<WaitStage>{ new WaitStage{ this, 2.0f } });
+	}
+
+	void GameLevelOne::PlayerSpaceshipDestroyed(Actor* destroyedSpaceship)
+	{
+		_playerSpaceship = PlayerManager::Get().GetPlayer()->SpawnSpaceship(this);
+		if (!_playerSpaceship.expired())
+		{
+			_playerSpaceship.lock()->onActorDestroy.BindAction(GetWeakReference(), &GameLevelOne::PlayerSpaceshipDestroyed);
+		}
+		else
+		{
+			GameOver();
+		}
+	}
+
+	void GameLevelOne::GameOver()
+	{
+		LOG("=== GAME OVER!!! ===");
 	}
 }

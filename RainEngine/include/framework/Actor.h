@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "framework/Core.h"
+#include "framework/Delegate.h"
 #include "Object.h"
 
 class b2Body;
@@ -61,6 +62,8 @@ namespace rn
 
 		sf::Sprite& GetSprite() { return _sprite; }
 		const sf::Sprite& GetSprite() const { return _sprite; }
+
+		Delegate<Actor*> onActorDestroy;
 
 	private:
 		void CenterPivot();

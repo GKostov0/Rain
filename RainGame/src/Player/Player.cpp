@@ -24,11 +24,15 @@ namespace rn
 			_currentPlayerSpaceship.lock()->SetActorRotation(-90.0f);
 
 			onLifeChange.Broadcast(_lifeCount);
+
+			return _currentPlayerSpaceship;
 		}
 		else
 		{
 			onLifeExhausted.Broadcast();
 		}
+
+		return weak<PlayerSpaceship>{};
 	}
 
 	void Player::AddLifeCount(unsigned int count)
@@ -40,7 +44,7 @@ namespace rn
 		}
 	}
 
-	int Player::AddScore(unsigned int amount)
+	void Player::AddScore(unsigned int amount)
 	{
 		if (amount > 0)
 		{
