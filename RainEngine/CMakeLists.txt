@@ -40,6 +40,9 @@ add_library(${RAIN_ENGINE_TARGET_NAME} STATIC
 
     ${CMAKE_CURRENT_SOURCE_DIR}/include/VFX/Particle.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/VFX/Particle.cpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/widgets/HUD.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/widgets/HUD.cpp
 )
 
 target_include_directories(${RAIN_ENGINE_TARGET_NAME} PUBLIC
