@@ -9,7 +9,7 @@ namespace rn
 	{
 	public:
 		virtual void Draw(sf::RenderWindow& windowReference) = 0;
-		void NativeIniti(sf::RenderWindow& windowReference);
+		void NativeInitialize(const sf::RenderWindow& windowReference);
 
 		bool IsInit() const { return _isInitialized; }
 		virtual bool HandleEvent(const sf::Event& ev);

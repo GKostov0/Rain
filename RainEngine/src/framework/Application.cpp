@@ -42,6 +42,10 @@ namespace rn
                         _mainWindow.close();
                     }
                 }
+                else
+                {
+                    DispatchEvent(windowEvent);
+                }
             }
 
             float frameDeltaTime = _tickClock.restart().asSeconds();
@@ -102,5 +106,13 @@ namespace rn
 
     void Application::Tick(float deltaTime)
     {
+    }
+
+    bool Application::DispatchEvent(const sf::Event& ev)
+    {
+        if (_currentWorld)
+        {
+            return _currentWorld->DispatchEvent(ev);
+        }
     }
 }

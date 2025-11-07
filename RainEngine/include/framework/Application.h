@@ -19,6 +19,9 @@ namespace rn
 
 		sf::Vector2u GetWindowSize() const;
 
+		sf::RenderWindow& GetWindow() { return _mainWindow; }
+		const sf::RenderWindow& GetWindow() const { return _mainWindow; }
+
 	private:
 
 		void TickInternal(float deltaTime);
@@ -27,6 +30,9 @@ namespace rn
 		virtual void Render();
 		virtual void Tick(float deltaTime);
 
+		bool DispatchEvent(const sf::Event& ev);
+
+	private:
 		sf::RenderWindow _mainWindow;
 		float _targetFrameRate;
 		sf::Clock _tickClock;

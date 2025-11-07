@@ -3,6 +3,7 @@
 #include "framework/Actor.h"
 #include "framework/Application.h"
 #include "gameplay/GameStage.h"
+#include "widgets/HUD.h"
 
 namespace rn
 {
@@ -52,6 +53,11 @@ namespace rn
 		}
 
 		Tick(deltaTime);
+
+		if (_hud && !_hud->IsInit())
+		{
+			_hud->NativeInitialize(_owner->GetWindow());
+		}
 	}
 
 	void World::Render(sf::RenderWindow& window)
@@ -60,6 +66,8 @@ namespace rn
 		{
 			actor->Render(window);
 		}
+
+		RenderHUD(window);
 	}
 
 	sf::Vector2u World::GetWindowSize() const
@@ -87,6 +95,14 @@ namespace rn
 		_gameStages.push_back(newStage);
 	}
 
+	bool World::DispatchEvent(const sf::Event& ev)
+	{
+		if (_hud)
+		{
+			return _hud->HandleEvent(ev);
+		}
+	}
+
 	void World::InitGameStages()
 	{
 
@@ -95,6 +111,14 @@ namespace rn
 	void World::AllGameStageFinished()
 	{
 		LOG("All stages Finished!");
+	}
+
+	void World::RenderHUD(sf::RenderWindow& window)
+	{
+		if (_hud)
+		{
+			_hud->Draw(window);
+		}
 	}
 
 	void World::NextGameStage()

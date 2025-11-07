@@ -2,7 +2,7 @@
 
 namespace rn
 {
-	void HUD::NativeIniti(sf::RenderWindow& windowReference)
+	void HUD::NativeInitialize(const sf::RenderWindow& windowReference)
 	{
 		if (!_isInitialized)
 		{
