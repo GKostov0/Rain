@@ -6,6 +6,7 @@
 namespace rn
 {
 	class PlayerSpaceship;
+	class GameplayHUD;
 
 	class GameLevelOne : public World
 	{
@@ -20,5 +21,6 @@ namespace rn
 
 	private:
 		weak<PlayerSpaceship> _playerSpaceship;
+		weak<GameplayHUD> _gameplayHUD;
 	};
 }

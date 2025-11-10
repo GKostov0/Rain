@@ -67,6 +67,9 @@ add_executable(${RAIN_GAME_TARGET_NAME}
 
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Level/GameLevelOne.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Level/GameLevelOne.cpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/widgets/GameplayHUD.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/widgets/GameplayHUD.cpp
 )
 
 target_include_directories(${RAIN_GAME_TARGET_NAME} PUBLIC

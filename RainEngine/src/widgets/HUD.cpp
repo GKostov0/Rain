@@ -16,6 +16,10 @@ namespace rn
 		return false;
 	}
 
+	void HUD::Tick(float deltaTime)
+	{
+	}
+
 	HUD::HUD()
 		: _isInitialized{false}
 	{

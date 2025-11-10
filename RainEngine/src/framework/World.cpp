@@ -54,9 +54,14 @@ namespace rn
 
 		Tick(deltaTime);
 
-		if (_hud && !_hud->IsInit())
+		if (_hud)
 		{
-			_hud->NativeInitialize(_owner->GetWindow());
+			if (!_hud->IsInit())
+			{
+				_hud->NativeInitialize(_owner->GetWindow());
+			}
+
+			_hud->Tick(deltaTime);
 		}
 	}
 
@@ -101,6 +106,7 @@ namespace rn
 		{
 			return _hud->HandleEvent(ev);
 		}
+		return false;
 	}
 
 	void World::InitGameStages()

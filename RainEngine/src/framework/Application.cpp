@@ -114,5 +114,6 @@ namespace rn
         {
             return _currentWorld->DispatchEvent(ev);
         }
+        return false;
     }
 }

@@ -13,6 +13,7 @@ namespace rn
 
 		bool IsInit() const { return _isInitialized; }
 		virtual bool HandleEvent(const sf::Event& ev);
+		virtual void Tick(float deltaTime);
 
 	protected:
 		HUD();

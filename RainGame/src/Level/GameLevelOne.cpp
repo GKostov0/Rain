@@ -16,6 +16,8 @@
 #include "Player/PlayerSpaceship.h"
 #include "Player/PlayerManager.h"
 
+#include "widgets/GameplayHUD.h"
+
 namespace rn
 {
 	GameLevelOne::GameLevelOne(Application* owner)
@@ -28,6 +30,7 @@ namespace rn
 		Player newPlayer = PlayerManager::Get().CreateNewPlayer();
 		_playerSpaceship = newPlayer.SpawnSpaceship(this);
 		_playerSpaceship.lock()->onActorDestroy.BindAction(GetWeakReference(), &GameLevelOne::PlayerSpaceshipDestroyed);
+		_gameplayHUD = SpawnHUD<GameplayHUD>();
 	}
 
 	void GameLevelOne::InitGameStages()
