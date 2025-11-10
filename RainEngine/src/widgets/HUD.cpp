@@ -21,7 +21,7 @@ namespace rn
 	{
 	}
 
-	void HUD::Initialize(sf::RenderWindow& windowReference)
+	void HUD::Initialize(const sf::RenderWindow& windowReference)
 	{
 	}
 }

@@ -18,7 +18,7 @@ namespace rn
 		HUD();
 
 	private:
-		virtual void Initialize(sf::RenderWindow& windowReference);
+		virtual void Initialize(const sf::RenderWindow& windowReference);
 
 	private:
 		bool _isInitialized;
