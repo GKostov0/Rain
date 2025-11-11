@@ -3,7 +3,7 @@
 #include "widgets/HUD.h"
 #include "widgets/TextWidget.h"
 #include "widgets/ValueGauge.h"
-
+#include "widgets/ImageWidget.h"
 
 
 namespace rn
@@ -33,6 +33,9 @@ namespace rn
 		sf::Color _healthDamagedColor;
 		sf::Color _healthCriticalColor;
 
+		ImageWidget _playerLifeIcon;
+
 		float _criticalThreshold;
+		float _widgetSpaceing;
 	};
 }
