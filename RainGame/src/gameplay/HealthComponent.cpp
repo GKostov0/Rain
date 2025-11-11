@@ -24,6 +24,8 @@ namespace rn
 		if (_currentHealth > _maxHealth)
 			_currentHealth = _maxHealth;
 
+		onHealthChanged.Broadcast(amount, _currentHealth, _maxHealth);
+
 		if (amount < 0)
 		{
 			TakenDamage(-amount);
@@ -33,8 +35,6 @@ namespace rn
 				HealthEmpty();
 			}
 		}
-
-		onHealthChanged.Broadcast(amount, _currentHealth, _maxHealth);
 	}
 
 	void HealthComponent::TakenDamage(float amount)

@@ -27,7 +27,7 @@ namespace rn
 
 	void GameLevelOne::BeginPlay()
 	{
-		Player newPlayer = PlayerManager::Get().CreateNewPlayer();
+		Player& newPlayer = PlayerManager::Get().CreateNewPlayer();
 		_playerSpaceship = newPlayer.SpawnSpaceship(this);
 		_playerSpaceship.lock()->onActorDestroy.BindAction(GetWeakReference(), &GameLevelOne::PlayerSpaceshipDestroyed);
 		_gameplayHUD = SpawnHUD<GameplayHUD>();

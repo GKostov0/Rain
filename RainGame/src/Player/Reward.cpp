@@ -71,7 +71,7 @@ namespace rn
 	{
 		if (player && !player->IsPendingDestroy())
 		{
-			player->SetShooter(unique<Shooter>{new ThreeWayShooter{player, 0.15f, {50.0f, 0.0f} }});
+			player->SetShooter(unique<Shooter>{new ThreeWayShooter{player, 0.15f, {60.0f, 0.0f} }});
 		}
 	}
 

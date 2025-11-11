@@ -20,7 +20,6 @@ namespace rn
 	private:
 		void TakenDamage(float amount);
 		void HealthEmpty();
-		void HealthRegen(float amount);
 
 	private:
 		float _currentHealth;

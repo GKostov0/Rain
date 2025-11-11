@@ -29,6 +29,7 @@ namespace rn
 		}
 		else
 		{
+			_currentPlayerSpaceship = weak<PlayerSpaceship>{};
 			onLifeExhausted.Broadcast();
 		}
 

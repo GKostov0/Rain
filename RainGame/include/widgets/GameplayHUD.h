@@ -4,8 +4,12 @@
 #include "widgets/TextWidget.h"
 #include "widgets/ValueGauge.h"
 
+
+
 namespace rn
 {
+	class Actor;
+
 	class GameplayHUD : public HUD
 	{
 	public:
@@ -16,6 +20,10 @@ namespace rn
 
 	private:
 		virtual void Initialize(const sf::RenderWindow& windowReference) override;
+
+		void RefreshHealthBar();
+		void PlayerHealthUpdated(float amount, float currentHealth, float maxHealth);
+		void PlayerSpaceshipDestroyed(Actor* actor);
 
 	private:
 		TextWidget _framerateText;
