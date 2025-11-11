@@ -28,5 +28,11 @@ namespace rn
 	private:
 		TextWidget _framerateText;
 		ValueGauge _playerHealthGauge;
+
+		sf::Color _healthGoodColor;
+		sf::Color _healthDamagedColor;
+		sf::Color _healthCriticalColor;
+
+		float _criticalThreshold;
 	};
 }

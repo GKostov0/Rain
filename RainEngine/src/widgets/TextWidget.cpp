@@ -19,6 +19,11 @@ namespace rn
 		_text.setCharacterSize(newSize);
 	}
 
+	sf::FloatRect TextWidget::GetBound() const
+	{
+		return _text.getGlobalBounds();
+	}
+
 	void TextWidget::LocationUpdated(const sf::Vector2f& newLocation)
 	{
 		_text.setPosition(newLocation);

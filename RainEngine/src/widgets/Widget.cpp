@@ -33,6 +33,17 @@ namespace rn
 		return false;
 	}
 
+	sf::FloatRect Widget::GetBound() const
+	{
+		return sf::FloatRect();
+	}
+
+	sf::Vector2f Widget::GetCenterPosition() const
+	{
+		sf::FloatRect bound = GetBound();
+		return { bound.left + bound.width / 2.0f, bound.top + bound.height / 2.0f };
+	}
+
 	void Widget::SetWidgetLocation(const sf::Vector2f newLocation)
 	{
 		_widgetTransform.setPosition(newLocation);

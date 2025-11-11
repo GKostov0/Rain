@@ -8,9 +8,12 @@ namespace rn
 	class Widget : public Object
 	{
 	public:
-		void NativeDraw(sf::RenderWindow& windowReference);
 		virtual bool HandleEvent(const sf::Event& ev);
+		virtual sf::FloatRect GetBound() const;
 
+		sf::Vector2f GetCenterPosition() const;
+
+		void NativeDraw(sf::RenderWindow& windowReference);
 		void SetWidgetLocation(const sf::Vector2f newLocation);
 		void SetWidgetRotation(float newRotation);
 

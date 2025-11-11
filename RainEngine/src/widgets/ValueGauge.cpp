@@ -15,6 +15,7 @@ namespace rn
 	{
 		_frontBar.setFillColor(_frontColor);
 		_backBar.setFillColor(_backColor);
+		SetTextSize(20);
 	}
 
 	void ValueGauge::UpdatValue(float value, float maxValue)
@@ -28,13 +29,27 @@ namespace rn
 
 		sf::Vector2f barSize = _backBar.getSize();
 		_frontBar.setSize({barSize.x * _percent, barSize.y});
+		CenterText();
+	}
+
+	sf::FloatRect ValueGauge::GetBound() const
+	{
+		return _backBar.getGlobalBounds();
 	}
 
 	void ValueGauge::LocationUpdated(const sf::Vector2f& newLocation)
 	{
-		_text.setPosition(newLocation);
 		_frontBar.setPosition(newLocation);
 		_backBar.setPosition(newLocation);
+		CenterText();
+	}
+
+	void ValueGauge::CenterText()
+	{
+		sf::Vector2f widgetCenter = GetCenterPosition();
+		sf::FloatRect textBound = _text.getGlobalBounds();
+
+		_text.setPosition(widgetCenter - sf::Vector2f{textBound.width / 2.0f, textBound.height});
 	}
 
 	void ValueGauge::RotationUpdated(float newRotation)
@@ -49,5 +64,20 @@ namespace rn
 		windowReference.draw(_backBar);
 		windowReference.draw(_frontBar);
 		windowReference.draw(_text);
+	}
+
+	void ValueGauge::SetTextSize(unsigned int textSize)
+	{
+		_text.setCharacterSize(textSize);
+	}
+
+	void ValueGauge::SetForegroundColor(const sf::Color color)
+	{
+		_frontBar.setFillColor(color);
+	}
+
+	void ValueGauge::SetBackgroundColor(const sf::Color color)
+	{
+		_backBar.setFillColor(color);
 	}
 }

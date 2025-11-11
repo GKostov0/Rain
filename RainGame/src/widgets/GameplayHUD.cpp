@@ -9,7 +9,11 @@ namespace rn
 {
 	GameplayHUD::GameplayHUD()
 		: _framerateText{"FPS:"},
-		_playerHealthGauge{}
+		_playerHealthGauge{},
+		_healthGoodColor{ 128, 255, 128, 255 },
+		_healthDamagedColor{ 255, 200, 0, 255 },
+		_healthCriticalColor{255, 64, 0, 255},
+		_criticalThreshold{0.3f}
 	{
 		_framerateText.SetTextSize(20);
 	}
@@ -30,7 +34,7 @@ namespace rn
 	void GameplayHUD::Initialize(const sf::RenderWindow& windowReference)
 	{
 		auto windowSize = windowReference.getSize();
-		_playerHealthGauge.SetWidgetLocation({10.0f, windowSize.y - 50.0f});
+		_playerHealthGauge.SetWidgetLocation({10.0f, windowSize.y - 40.0f});
 
 		RefreshHealthBar();
 	}
@@ -38,6 +42,22 @@ namespace rn
 	void GameplayHUD::PlayerHealthUpdated(float amount, float currentHealth, float maxHealth)
 	{
 		_playerHealthGauge.UpdatValue(currentHealth, maxHealth);
+
+		if ((currentHealth / maxHealth) <= _criticalThreshold)
+		{
+			_playerHealthGauge.SetForegroundColor(_healthCriticalColor);
+		}
+		else
+		{
+			if (currentHealth == maxHealth)
+			{
+				_playerHealthGauge.SetForegroundColor(_healthGoodColor);
+			}
+			else
+			{
+				_playerHealthGauge.SetForegroundColor(_healthDamagedColor);
+			}
+		}
 	}
 
 	void GameplayHUD::RefreshHealthBar()
@@ -58,5 +78,6 @@ namespace rn
 	void GameplayHUD::PlayerSpaceshipDestroyed(Actor* actor)
 	{
 		RefreshHealthBar();
+		_playerHealthGauge.SetForegroundColor(_healthGoodColor);
 	}
 }
