@@ -9,7 +9,7 @@ namespace rn
 	{
 	public:
 		virtual bool HandleEvent(const sf::Event& ev);
-		virtual sf::FloatRect GetBound() const;
+		virtual sf::FloatRect GetBound() const = 0;
 
 		sf::Vector2f GetCenterPosition() const;
 

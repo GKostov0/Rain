@@ -9,6 +9,11 @@ namespace rn
 	{
 	}
 
+	sf::FloatRect ImageWidget::GetBound() const
+	{
+		return _sprite.getGlobalBounds();
+	}
+
 	void ImageWidget::SetImage(const shared<sf::Texture>& newTexture)
 	{
 		if (newTexture)

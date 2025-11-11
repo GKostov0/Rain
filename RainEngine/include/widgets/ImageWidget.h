@@ -10,6 +10,7 @@ namespace rn
 	public:
 		ImageWidget(const std::string& imagePath);
 
+		virtual sf::FloatRect GetBound() const override;
 		void SetImage(const shared<sf::Texture>& newTexture);
 
 	private:
