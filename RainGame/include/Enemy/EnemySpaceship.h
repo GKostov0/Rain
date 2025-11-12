@@ -18,6 +18,8 @@ namespace rn
 
 		virtual void Tick(float deltaTime) override;
 
+		void SetScoreAwardAmount(unsigned int amount);
+
 	private:
 		virtual void OnActorBeginOverlap(Actor* other) override;
 		virtual void Blew() override;
@@ -25,6 +27,7 @@ namespace rn
 
 	private:
 		float _collisionDamage;
+		unsigned int _scoreAwardAmount;
 
 		List<RewardFactoryFunc> _rewardFactories;
 	};

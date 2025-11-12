@@ -24,13 +24,15 @@ namespace rn
 		void RefreshHealthBar();
 		void PlayerHealthUpdated(float amount, float currentHealth, float maxHealth);
 		void PlayerSpaceshipDestroyed(Actor* actor);
-		void ConnectPlayerLifeCount();
+		void ConnectPlayerStatus();
 		void PlayerLifeCountUpdated(int amount);
+		void PlayerScorCountUpdated(int amount);
 
 	private:
 
 		TextWidget _framerateText;
 		TextWidget _playerLifeText;
+		TextWidget _playerScoreText;
 
 		ValueGauge _playerHealthGauge;
 
@@ -39,6 +41,7 @@ namespace rn
 		sf::Color _healthCriticalColor;
 
 		ImageWidget _playerLifeIcon;
+		ImageWidget _playerScoreIcon;
 
 		float _criticalThreshold;
 		float _widgetSpaceing;

@@ -1,5 +1,6 @@
 #include "Enemy/EnemySpaceship.h"
 #include "framework/MathUtility.h"
+#include "Player/PlayerManager.h"
 
 namespace rn
 {
@@ -7,7 +8,8 @@ namespace rn
 									float collisionDamage, const List<RewardFactoryFunc> rewards)
 		: Spaceship{ owner, texturePath },
 		_collisionDamage{ collisionDamage },
-		_rewardFactories{ rewards }
+		_rewardFactories{ rewards },
+		_scoreAwardAmount{10}
 	{
 		SetTeamID(2);
 	}
@@ -20,6 +22,11 @@ namespace rn
 		{
 			Destroy();
 		}
+	}
+
+	void EnemySpaceship::SetScoreAwardAmount(unsigned int amount)
+	{
+		_scoreAwardAmount = amount;
 	}
 
 	void EnemySpaceship::OnActorBeginOverlap(Actor* other)
@@ -35,6 +42,11 @@ namespace rn
 	void EnemySpaceship::Blew()
 	{
 		SpawnReward();
+		Player* player = PlayerManager::Get().GetPlayer();
+		if (player)
+		{
+			player->AddScore(_scoreAwardAmount);
+		}
 	}
 
 	void EnemySpaceship::SpawnReward()
