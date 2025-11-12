@@ -1,5 +1,6 @@
 #include "Player/Reward.h"
 #include "framework/World.h"
+#include "Player/PlayerManager.h"
 #include "Player/PlayerSpaceship.h"
 
 #include "Weapon/ThreeWayShooter.h"
@@ -28,10 +29,19 @@ namespace rn
 
 	void Reward::OnActorBeginOverlap(Actor* other)
 	{
-		PlayerSpaceship* player = dynamic_cast<PlayerSpaceship*>(other);
-		if (player != nullptr && !player->IsPendingDestroy())
+		if (!other || other->IsPendingDestroy())
+			return;
+
+		if (!PlayerManager::Get().GetPlayer())
+			return;
+
+		weak<PlayerSpaceship> playerSpaceship = PlayerManager::Get().GetPlayer()->GetCurrentSpaceship();
+		if (playerSpaceship.expired() || playerSpaceship.lock()->IsPendingDestroy())
+			return;
+
+		if (playerSpaceship.lock().get()->GetUniqueID() == other->GetUniqueID())
 		{
-			_rewardFunction(player);
+			_rewardFunction(playerSpaceship.lock().get());
 			Destroy();
 		}
 	}

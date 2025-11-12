@@ -16,12 +16,20 @@ namespace rn
 
 		virtual void Destroy();
 
+		unsigned int GetUniqueID() const { return _uniqueID; }
+
 		weak<Object> GetWeakReference();
 		weak<const Object> GetWeakReference() const;
 
 		Delegate<Object*> onDestroy;
 
 	private:
+		static unsigned int GetNextAvailableID();
+
+	private:
 		bool _pendingDestroy;
+		unsigned int _uniqueID;
+
+		static unsigned int _uniqueIdCounter;
 	};
 }

@@ -3,8 +3,11 @@
 
 namespace rn
 {
+	unsigned int Object::_uniqueIdCounter = 0;
+
 	Object::Object()
-		: _pendingDestroy{false}
+		: _pendingDestroy{false},
+		_uniqueID{ GetNextAvailableID()}
 	{
 	}
 
@@ -27,5 +30,10 @@ namespace rn
 	weak<const Object> Object::GetWeakReference() const
 	{
 		return weak_from_this();
+	}
+
+	unsigned int Object::GetNextAvailableID()
+	{
+		return _uniqueIdCounter++;
 	}
 }
