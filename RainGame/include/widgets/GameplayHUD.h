@@ -4,6 +4,7 @@
 #include "widgets/TextWidget.h"
 #include "widgets/ValueGauge.h"
 #include "widgets/ImageWidget.h"
+#include "widgets/Button.h"
 
 
 namespace rn
@@ -42,6 +43,8 @@ namespace rn
 
 		ImageWidget _playerLifeIcon;
 		ImageWidget _playerScoreIcon;
+
+		Button _testButton;
 
 		float _criticalThreshold;
 		float _widgetSpaceing;

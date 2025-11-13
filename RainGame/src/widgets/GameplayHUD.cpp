@@ -18,7 +18,8 @@ namespace rn
 		_playerLifeIcon{ "SpaceShooterRedux/PNG/pickups/playerLife1_blue.png" },
 		_playerScoreIcon{ "SpaceShooterRedux/PNG/Power-ups/star_gold.png" },
 		_criticalThreshold{0.3f},
-		_widgetSpaceing{10.0f}
+		_widgetSpaceing{10.0f},
+		_testButton{}
 	{
 		_framerateText.SetTextSize(20);
 		_playerLifeText.SetTextSize(20);
@@ -44,6 +45,8 @@ namespace rn
 		nextWidgetPosition += sf::Vector2f{ _playerLifeIcon.GetBound().width + _widgetSpaceing, 0.0f };
 		_playerLifeText.SetWidgetLocation(nextWidgetPosition);
 
+		_testButton.SetWidgetLocation({ windowSize .x / 2.0f, windowSize .y / 2.0f});
+
 		RefreshHealthBar();
 		ConnectPlayerStatus();
 	}
@@ -60,6 +63,9 @@ namespace rn
 		// Life
 		_playerLifeIcon.NativeDraw(windowReference);
 		_playerLifeText.NativeDraw(windowReference);
+
+		// Test
+		_testButton.NativeDraw(windowReference);
 	}
 
 	void GameplayHUD::Tick(float deltaTime)
