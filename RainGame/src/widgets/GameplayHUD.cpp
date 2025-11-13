@@ -46,9 +46,16 @@ namespace rn
 		_playerLifeText.SetWidgetLocation(nextWidgetPosition);
 
 		_testButton.SetWidgetLocation({ windowSize .x / 2.0f, windowSize .y / 2.0f});
+		_testButton.SetTextCharacterSize(12);
+		_testButton.onButtonClicked.BindAction(GetWeakReference(), &GameplayHUD::TESTFUNCTION);
 
 		RefreshHealthBar();
 		ConnectPlayerStatus();
+	}
+
+	void GameplayHUD::TESTFUNCTION()
+	{
+		LOG("Button CLicked!");
 	}
 
 	void GameplayHUD::Draw(sf::RenderWindow& windowReference)
@@ -73,6 +80,11 @@ namespace rn
 		int framerate = int(1 / deltaTime);
 		std::string fps = "FPS: " + std::to_string(framerate);
 		_framerateText.SetString(fps);
+	}
+
+	bool GameplayHUD::HandleEvent(const sf::Event& ev)
+	{
+		return _testButton.HandleEvent(ev) || HUD::HandleEvent(ev);
 	}
 
 	void GameplayHUD::PlayerHealthUpdated(float amount, float currentHealth, float maxHealth)

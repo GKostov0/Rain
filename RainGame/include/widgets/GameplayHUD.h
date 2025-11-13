@@ -18,6 +18,7 @@ namespace rn
 
 		virtual void Draw(sf::RenderWindow& windowReference) override;
 		virtual void Tick(float deltaTime) override;
+		virtual bool HandleEvent(const sf::Event& ev) override;
 
 	private:
 		virtual void Initialize(const sf::RenderWindow& windowReference) override;
@@ -28,6 +29,8 @@ namespace rn
 		void ConnectPlayerStatus();
 		void PlayerLifeCountUpdated(int amount);
 		void PlayerScorCountUpdated(int amount);
+
+		void TESTFUNCTION();
 
 	private:
 
