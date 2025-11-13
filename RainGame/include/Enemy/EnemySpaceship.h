@@ -8,12 +8,13 @@ namespace rn
 	class EnemySpaceship : public Spaceship
 	{
 	public: 
-		EnemySpaceship(World* owner, const std::string& texturePath, float collisionDamage = 200.0f,
+		EnemySpaceship(World* owner, const std::string& texturePath, float collisionDamage = 200.0f, float rewardSpawnWeight = 0.5f,
 			const List<RewardFactoryFunc> rewards = 
 			{
 				CreateHealthReward,
 				CreateThreeWayShooterReward,
-				CreateFrontalWiperReward
+				CreateFrontalWiperReward,
+				CreatLifeReward
 			});
 
 		virtual void Tick(float deltaTime) override;
@@ -28,6 +29,7 @@ namespace rn
 	private:
 		float _collisionDamage;
 		unsigned int _scoreAwardAmount;
+		float _rewardSpawnWeight;
 
 		List<RewardFactoryFunc> _rewardFactories;
 	};

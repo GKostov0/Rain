@@ -61,6 +61,11 @@ namespace rn
 		return CrateReward(world, "SpaceShooterRedux/PNG/pickups/front_row_shooter_pickup.png", RewardFrontalWiper);
 	}
 
+	weak<Reward> CreatLifeReward(World* world)
+	{
+		return CrateReward(world, "SpaceShooterRedux/PNG/pickups/playerLife1_blue.png", RewardLife);
+	}
+
 	weak<Reward> CrateReward(World* world, const std::string& texturePath, RewardFunction rewardFunctuion)
 	{
 		weak<Reward> reward = world->SpawnActor<Reward>(texturePath, rewardFunctuion);
@@ -91,5 +96,13 @@ namespace rn
 		{
 			player->SetShooter(unique<Shooter>{new FrontalWiper{ player, 0.15f, {50.0f, 0.0f} }});
 		}
+	}
+
+	void RewardLife(PlayerSpaceship* player)
+	{
+		if (!PlayerManager::Get().GetPlayer())
+			return;
+
+		PlayerManager::Get().GetPlayer()->AddLifeCount(1);
 	}
 }

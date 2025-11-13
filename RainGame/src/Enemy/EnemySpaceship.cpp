@@ -4,12 +4,13 @@
 
 namespace rn
 {
-	EnemySpaceship::EnemySpaceship(World* owner, const std::string& texturePath,
-									float collisionDamage, const List<RewardFactoryFunc> rewards)
+	EnemySpaceship::EnemySpaceship(World* owner, const std::string& texturePath, float collisionDamage,
+		float rewardSpawnWeight, const List<RewardFactoryFunc> rewards)
 		: Spaceship{ owner, texturePath },
 		_collisionDamage{ collisionDamage },
 		_rewardFactories{ rewards },
-		_scoreAwardAmount{10}
+		_scoreAwardAmount{10},
+		_rewardSpawnWeight{ rewardSpawnWeight }
 	{
 		SetTeamID(2);
 	}
@@ -51,7 +52,11 @@ namespace rn
 
 	void EnemySpaceship::SpawnReward()
 	{
-		if (_rewardFactories.size() == 0) return;
+		if (_rewardFactories.size() == 0)
+			return;
+
+		if (_rewardSpawnWeight < RandomRange(0, 1))
+			return;
 
 		int result = (int)RandomRange(0, _rewardFactories.size());
 		if (result >= 0 && result < _rewardFactories.size())
