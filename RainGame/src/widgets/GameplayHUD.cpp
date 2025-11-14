@@ -46,7 +46,7 @@ namespace rn
 		_playerLifeText.SetWidgetLocation(nextWidgetPosition);
 
 		_testButton.SetWidgetLocation({ windowSize .x / 2.0f, windowSize .y / 2.0f});
-		_testButton.SetTextCharacterSize(12);
+		_testButton.SetTextSize(12);
 		_testButton.onButtonClicked.BindAction(GetWeakReference(), &GameplayHUD::TESTFUNCTION);
 
 		RefreshHealthBar();

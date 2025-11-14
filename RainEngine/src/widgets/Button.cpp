@@ -78,7 +78,7 @@ namespace rn
 		CenterText();
 	}
 
-	void Button::SetTextCharacterSize(unsigned int size)
+	void Button::SetTextSize(unsigned int size)
 	{
 		_buttonText.setCharacterSize(size);
 		CenterText();

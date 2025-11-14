@@ -146,8 +146,11 @@ namespace rn
 	{
 		_currentStage = _gameStages.begin();
 
-		_currentStage->get()->StartStage();
-		_currentStage->get()->onStageFinished.BindAction(GetWeakReference(), &World::NextGameStage);
+		if (_currentStage != _gameStages.end())
+		{
+			_currentStage->get()->StartStage();
+			_currentStage->get()->onStageFinished.BindAction(GetWeakReference(), &World::NextGameStage);
+		}
 	}
 
 	void World::BeginPlay()

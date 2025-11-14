@@ -1,5 +1,6 @@
 #include "gameFramework/GameApplication.h"
 #include "Level/GameLevelOne.h"
+#include "Level/MainMenuLevel.h"
 #include "framework/AssetManager.h"
 #include "config.h"
 
@@ -15,6 +16,6 @@ namespace rn
 	{
 		AssetManager::Get().SetAssetRootDirectory(GetResourceDirectory());
 
-		weak<GameLevelOne> newWorld = LoadWorld<GameLevelOne>();
+		weak<MainMenuLevel> mainMenu = LoadWorld<MainMenuLevel>();
 	}
 }

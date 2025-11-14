@@ -13,7 +13,7 @@ namespace rn
 		virtual bool HandleEvent(const sf::Event& ev) override;
 
 		void SetTextString(const std::string& newText);
-		void SetTextCharacterSize(unsigned int size);
+		void SetTextSize(unsigned int size);
 
 		Delegate<> onButtonClicked;
 
