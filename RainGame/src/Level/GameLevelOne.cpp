@@ -1,7 +1,8 @@
 #include "Level/GameLevelOne.h"
 
-#include "Enemy/VanguardStage.h"
+#include "Enemy/ChaosStage.h"
 #include "Enemy/TwinBladeStage.h"
+#include "Enemy/VanguardStage.h"
 #include "Enemy/HexagonStage.h"
 #include "Enemy/UFOStage.h"
 
@@ -35,6 +36,9 @@ namespace rn
 
 	void GameLevelOne::InitGameStages()
 	{
+		AddStage(shared<WaitStage>{ new WaitStage{ this, 2.0f } });
+		AddStage(shared<ChaosStage>{ new ChaosStage{ this } });				// Chaos
+
 		AddStage(shared<WaitStage>{ new WaitStage{ this, 2.0f } });
 		AddStage(shared<VanguardStage>{ new VanguardStage{ this } });		// Vanguards
 
