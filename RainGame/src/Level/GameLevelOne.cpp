@@ -36,7 +36,6 @@ namespace rn
 
 	void GameLevelOne::InitGameStages()
 	{
-		AddStage(shared<WaitStage>{ new WaitStage{ this, 2.0f } });
 		AddStage(shared<ChaosStage>{ new ChaosStage{ this } });				// Chaos
 
 		AddStage(shared<WaitStage>{ new WaitStage{ this, 2.0f } });

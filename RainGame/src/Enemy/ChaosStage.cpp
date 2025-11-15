@@ -12,9 +12,9 @@ namespace rn
 {
 	ChaosStage::ChaosStage(World* owner)
 		: GameStage{owner},
-		_spawnInterval{5.0f},
+		_spawnInterval{4.0f},
 		_minSpawnInterval{0.8f},
-		_spawnIntervalDecrement{0.4f},
+		_spawnIntervalDecrement{0.5f},
 		_spawnIntervalDecrementInterval{5.0f},
 		_stageDuration{60.0f}
 	{
