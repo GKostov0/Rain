@@ -30,10 +30,7 @@ namespace rn
 		void PlayerLifeCountUpdated(int amount);
 		void PlayerScorCountUpdated(int amount);
 
-		void TESTFUNCTION();
-
 	private:
-
 		TextWidget _framerateText;
 		TextWidget _playerLifeText;
 		TextWidget _playerScoreText;
@@ -46,8 +43,6 @@ namespace rn
 
 		ImageWidget _playerLifeIcon;
 		ImageWidget _playerScoreIcon;
-
-		Button _testButton;
 
 		float _criticalThreshold;
 		float _widgetSpaceing;

@@ -33,14 +33,7 @@ namespace rn
             {
                 if (windowEvent.type == sf::Event::EventType::Closed)
                 {
-                    _mainWindow.close();
-                }
-                else if (windowEvent.type == sf::Event::KeyPressed)
-                {
-                    if (windowEvent.key.code == sf::Keyboard::Escape)
-                    {
-                        _mainWindow.close();
-                    }
+                    QuitApplication();
                 }
                 else
                 {
@@ -64,13 +57,17 @@ namespace rn
         return _mainWindow.getSize();
     }
 
+    void Application::QuitApplication()
+    {
+        _mainWindow.close();
+    }
+
     void Application::TickInternal(float deltaTime)
     {
         Tick(deltaTime);
 
         if (_currentWorld)
         {
-            _currentWorld->BeginPlayInternal();
             _currentWorld->TickInternal(deltaTime);
         }
 
@@ -87,6 +84,12 @@ namespace rn
             {
                 _currentWorld->CleanCycle();
             }
+        }
+
+        if (_pendingWorld && _pendingWorld != _currentWorld)
+        {
+            _currentWorld = _pendingWorld;
+            _currentWorld->BeginPlayInternal();
         }
     }
 

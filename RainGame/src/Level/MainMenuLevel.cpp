@@ -1,6 +1,9 @@
 #include "Level/MainMenuLevel.h"
 #include "widgets/MainMenuHUD.h"
 
+#include "framework/Application.h"
+#include "Level/GameLevelOne.h"
+
 namespace rn
 {
 	MainMenuLevel::MainMenuLevel(Application* owner)
@@ -17,11 +20,11 @@ namespace rn
 
 	void MainMenuLevel::StartGame()
 	{
-		LOG("Start Game!");
+		GetApplication()->LoadWorld<GameLevelOne>();
 	}
 
 	void MainMenuLevel::QuitGame()
 	{
-		LOG("Quit Game!");
+		GetApplication()->QuitApplication();
 	}
 }

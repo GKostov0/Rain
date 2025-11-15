@@ -18,8 +18,7 @@ namespace rn
 		_playerLifeIcon{ "SpaceShooterRedux/PNG/pickups/playerLife1_blue.png" },
 		_playerScoreIcon{ "SpaceShooterRedux/PNG/Power-ups/star_gold.png" },
 		_criticalThreshold{0.3f},
-		_widgetSpaceing{10.0f},
-		_testButton{}
+		_widgetSpaceing{10.0f}
 	{
 		_framerateText.SetTextSize(20);
 		_playerLifeText.SetTextSize(20);
@@ -45,17 +44,8 @@ namespace rn
 		nextWidgetPosition += sf::Vector2f{ _playerLifeIcon.GetBound().width + _widgetSpaceing, 0.0f };
 		_playerLifeText.SetWidgetLocation(nextWidgetPosition);
 
-		_testButton.SetWidgetLocation({ windowSize .x / 2.0f, windowSize .y / 2.0f});
-		_testButton.SetTextSize(12);
-		_testButton.onButtonClicked.BindAction(GetWeakReference(), &GameplayHUD::TESTFUNCTION);
-
 		RefreshHealthBar();
 		ConnectPlayerStatus();
-	}
-
-	void GameplayHUD::TESTFUNCTION()
-	{
-		LOG("Button CLicked!");
 	}
 
 	void GameplayHUD::Draw(sf::RenderWindow& windowReference)
@@ -70,9 +60,6 @@ namespace rn
 		// Life
 		_playerLifeIcon.NativeDraw(windowReference);
 		_playerLifeText.NativeDraw(windowReference);
-
-		// Test
-		_testButton.NativeDraw(windowReference);
 	}
 
 	void GameplayHUD::Tick(float deltaTime)
@@ -84,7 +71,7 @@ namespace rn
 
 	bool GameplayHUD::HandleEvent(const sf::Event& ev)
 	{
-		return _testButton.HandleEvent(ev) || HUD::HandleEvent(ev);
+		return HUD::HandleEvent(ev);
 	}
 
 	void GameplayHUD::PlayerHealthUpdated(float amount, float currentHealth, float maxHealth)

@@ -22,6 +22,8 @@ namespace rn
 		sf::RenderWindow& GetWindow() { return _mainWindow; }
 		const sf::RenderWindow& GetWindow() const { return _mainWindow; }
 
+		void QuitApplication();
+
 	private:
 
 		void TickInternal(float deltaTime);
@@ -41,13 +43,14 @@ namespace rn
 		float _cleanCycleInterval;
 
 		shared<World> _currentWorld;
+		shared<World> _pendingWorld;
 	};
 
 	template<typename WorldType>
 	weak<WorldType> Application::LoadWorld()
 	{
 		shared<WorldType> newWorld{ new WorldType{this} };
-		_currentWorld = newWorld;
+		_pendingWorld = newWorld;
 		return newWorld;
 	}
 }

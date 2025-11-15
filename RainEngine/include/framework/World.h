@@ -36,6 +36,9 @@ namespace rn
 
 		bool DispatchEvent(const sf::Event& ev);
 
+		Application* GetApplication() { return _owner; }
+		const Application* GetApplication() const { return _owner; }
+
 	private:
 		virtual void InitGameStages();
 		virtual void AllGameStageFinished();
