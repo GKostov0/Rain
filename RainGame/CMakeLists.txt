@@ -53,6 +53,9 @@ add_executable(${RAIN_GAME_TARGET_NAME}
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Enemy/UFO.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Enemy/UFO.cpp
 
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Enemy/Boss.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Enemy/Boss.cpp
+
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Enemy/VanguardStage.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Enemy/VanguardStage.cpp
 
@@ -67,6 +70,9 @@ add_executable(${RAIN_GAME_TARGET_NAME}
 
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Enemy/ChaosStage.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Enemy/ChaosStage.cpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Enemy/BossStage.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Enemy/BossStage.cpp
 
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Level/GameLevelOne.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Level/GameLevelOne.cpp
