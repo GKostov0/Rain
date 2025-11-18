@@ -13,6 +13,8 @@ namespace rn
 		float GetCurrentHealth() const { return _currentHealth; }
 		float GetMaxHealth() const { return _maxHealth; }
 
+		void SetInitialHealth(float health, float maxHealth);
+
 		Delegate<float, float, float> onHealthChanged;
 		Delegate<float, float, float> onTakenDamage;
 		Delegate<> onHealthEmpty;

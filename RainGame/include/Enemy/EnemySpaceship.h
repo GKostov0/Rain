@@ -20,6 +20,7 @@ namespace rn
 		virtual void Tick(float deltaTime) override;
 
 		void SetScoreAwardAmount(unsigned int amount);
+		void SetRewardSpawnWeight(float weight);
 
 	private:
 		virtual void OnActorBeginOverlap(Actor* other) override;

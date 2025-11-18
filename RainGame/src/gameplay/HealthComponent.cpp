@@ -37,6 +37,12 @@ namespace rn
 		}
 	}
 
+	void HealthComponent::SetInitialHealth(float health, float maxHealth)
+	{
+		_currentHealth = health;
+		_maxHealth = maxHealth;
+	}
+
 	void HealthComponent::TakenDamage(float amount)
 	{
 		onTakenDamage.Broadcast(amount, _currentHealth, _maxHealth);

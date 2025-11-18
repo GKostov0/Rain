@@ -30,6 +30,16 @@ namespace rn
 		_scoreAwardAmount = amount;
 	}
 
+	void EnemySpaceship::SetRewardSpawnWeight(float weight)
+	{
+		if (weight < 0 || weight > 1)
+		{
+			return;
+		}
+
+		_rewardSpawnWeight = weight;
+	}
+
 	void EnemySpaceship::OnActorBeginOverlap(Actor* other)
 	{
 		Spaceship::OnActorBeginOverlap(other);
