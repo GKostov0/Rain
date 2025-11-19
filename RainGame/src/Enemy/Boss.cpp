@@ -6,11 +6,12 @@ namespace rn
 {
 	Boss::Boss(World* owner)
 		: EnemySpaceship{ owner, "SpaceShooterRedux/PNG/Enemies/boss.png" },
+		_baseSpeed{100.0f},
 		_speed{ 100.0f },
 		_switchDistanceToEdge{ 100.0f },
 		_currentStage{1},
-		_baseShooterLeft{ this, 0.8f, {50, -50.0f} },
-		_baseShooterRight{ this, 0.8f, {50, 50.0f} },
+		_baseShooterLeft{ this, 1.0f, {50, -50.0f} },
+		_baseShooterRight{ this, 1.0f, {50, 50.0f} },
 		_finalStageShooterLeft{ this, 0.3f, {50.0f, -150.0f} },
 		_finalStageShooterRight{ this, 0.3f, {50.0f, 150.0f} },
 		_threeWayShooter{ this, 0.4f, {100.0f, 0.0f} },
@@ -105,5 +106,7 @@ namespace rn
 		_frontalWiperRight.SetCurrentLevel(newStage);
 
 		_threeWayShooter.SetCurrentLevel(newStage);
+
+		_speed = _currentStage * _baseSpeed;
 	}
 }

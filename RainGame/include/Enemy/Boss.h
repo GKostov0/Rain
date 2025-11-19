@@ -27,6 +27,7 @@ namespace rn
 		void SetStage(int newStage);
 
 	private:
+		float _baseSpeed;
 		float _speed;
 		float _switchDistanceToEdge;
 

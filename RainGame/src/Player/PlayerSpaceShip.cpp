@@ -16,9 +16,10 @@ namespace rn
 		_invulnerableFlashTimer{0.0f},
 		_invulnerableFlashDirection{1.0f},
 		_isInvulnerable{true},
-		_shooter{ new BulletShooter{this, 0.15f, {50.0f, 0.0f}} }
+		_shooter{ new ThreeWayShooter{this, 1.0f, {50.0f, 0.0f}} }
 	{
 		SetTeamID(1);
+		_shooter->SetCurrentLevel(4);
 	}
 
 	void PlayerSpaceship::BeginPlay()
