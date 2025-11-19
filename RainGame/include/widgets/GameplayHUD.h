@@ -20,6 +20,11 @@ namespace rn
 		virtual void Tick(float deltaTime) override;
 		virtual bool HandleEvent(const sf::Event& ev) override;
 
+		void GameFinished(bool didWin);
+
+		Delegate<> onRestartButtonClicked;
+		Delegate<> onQuitButtonClicked;
+
 	private:
 		virtual void Initialize(const sf::RenderWindow& windowReference) override;
 
@@ -30,10 +35,18 @@ namespace rn
 		void PlayerLifeCountUpdated(int amount);
 		void PlayerScorCountUpdated(int amount);
 
+		void RestartButtonClicked();
+		void QuitButtonClicked();
+
 	private:
 		TextWidget _framerateText;
 		TextWidget _playerLifeText;
 		TextWidget _playerScoreText;
+		TextWidget _winLoseText;
+		TextWidget _finalScoreText;
+
+		Button _restartButton;
+		Button _quitButton;
 
 		ValueGauge _playerHealthGauge;
 

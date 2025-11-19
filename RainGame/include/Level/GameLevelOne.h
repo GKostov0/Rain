@@ -16,8 +16,13 @@ namespace rn
 	private:
 		virtual void BeginPlay() override;
 		virtual void InitGameStages() override;
+		virtual void AllGameStageFinished() override;
+
 		void PlayerSpaceshipDestroyed(Actor* destroyedSpaceship);
+
+		void RestartGame();
 		void GameOver();
+		void QuitGame();
 
 	private:
 		weak<PlayerSpaceship> _playerSpaceship;

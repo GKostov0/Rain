@@ -11,6 +11,10 @@ namespace rn
 		: _framerateText{"FPS:"},
 		_playerLifeText{ "" },
 		_playerScoreText{""},
+		_winLoseText{""},
+		_finalScoreText{""},
+		_restartButton{"Restart"},
+		_quitButton{"Quit"},
 		_playerHealthGauge{},
 		_healthGoodColor{ 128, 255, 128, 255 },
 		_healthDamagedColor{ 255, 200, 0, 255 },
@@ -20,9 +24,20 @@ namespace rn
 		_criticalThreshold{0.3f},
 		_widgetSpaceing{10.0f}
 	{
+		// In game stats
+		// Text
 		_framerateText.SetTextSize(20);
 		_playerLifeText.SetTextSize(20);
 		_playerScoreText.SetTextSize(20);
+
+		// Game Over
+		// Text
+		_winLoseText.SetVisibility(false);
+		_finalScoreText.SetVisibility(false);
+
+		// Buttons
+		_restartButton.SetVisibility(false);
+		_quitButton.SetVisibility(false);
 	}
 
 	void GameplayHUD::Initialize(const sf::RenderWindow& windowReference)
@@ -46,6 +61,13 @@ namespace rn
 
 		RefreshHealthBar();
 		ConnectPlayerStatus();
+
+		_winLoseText.SetWidgetLocation({ windowSize.x / 2.0f - _winLoseText.GetBound().width / 2.0f, 100.0f });
+		_restartButton.SetWidgetLocation({ windowSize.x / 2.0f - _restartButton.GetBound().width / 2.0f, windowSize.y / 2.0f });
+		_quitButton.SetWidgetLocation(_restartButton.GetWidgetLocation() + sf::Vector2f(0.5f, 50.0f));
+
+		_restartButton.onButtonClicked.BindAction(GetWeakReference(), &GameplayHUD::RestartButtonClicked);
+		_quitButton.onButtonClicked.BindAction(GetWeakReference(), &GameplayHUD::QuitButtonClicked);
 	}
 
 	void GameplayHUD::Draw(sf::RenderWindow& windowReference)
@@ -53,13 +75,17 @@ namespace rn
 		_framerateText.NativeDraw(windowReference);
 		_playerHealthGauge.NativeDraw(windowReference);
 
-		// Score
+		// In game stats
 		_playerScoreIcon.NativeDraw(windowReference);
 		_playerScoreText.NativeDraw(windowReference);
-
-		// Life
 		_playerLifeIcon.NativeDraw(windowReference);
 		_playerLifeText.NativeDraw(windowReference);
+
+		// Game Over
+		_winLoseText.NativeDraw(windowReference);
+		_finalScoreText.NativeDraw(windowReference);
+		_restartButton.NativeDraw(windowReference);
+		_quitButton.NativeDraw(windowReference);
 	}
 
 	void GameplayHUD::Tick(float deltaTime)
@@ -71,7 +97,23 @@ namespace rn
 
 	bool GameplayHUD::HandleEvent(const sf::Event& ev)
 	{
+		if (_restartButton.HandleEvent(ev))
+			return true;
+
+		if (_quitButton.HandleEvent(ev))
+			return true;
+
 		return HUD::HandleEvent(ev);
+	}
+
+	void GameplayHUD::GameFinished(bool didWin)
+	{
+		_winLoseText.SetVisibility(true);
+		_finalScoreText.SetVisibility(true);
+		_restartButton.SetVisibility(true);
+		_quitButton.SetVisibility(true);
+
+		_winLoseText.SetString(didWin ? "You Win!" : "You Lose!");
 	}
 
 	void GameplayHUD::PlayerHealthUpdated(float amount, float currentHealth, float maxHealth)
@@ -137,5 +179,15 @@ namespace rn
 	void GameplayHUD::PlayerScorCountUpdated(int amount)
 	{
 		_playerScoreText.SetString(std::to_string(amount));
+	}
+
+	void GameplayHUD::RestartButtonClicked()
+	{
+		onRestartButtonClicked.Broadcast();
+	}
+
+	void GameplayHUD::QuitButtonClicked()
+	{
+		onQuitButtonClicked.Broadcast();
 	}
 }

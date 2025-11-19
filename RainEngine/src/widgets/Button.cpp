@@ -29,7 +29,7 @@ namespace rn
 	{
 		bool result = false;
 
-		if (_isDisabled)
+		if (_isDisabled || !GetVisibility())
 			return result;
 
 		if (ev.type == sf::Event::MouseButtonReleased)
@@ -64,8 +64,6 @@ namespace rn
 				{
 					ButtonUp();
 				}
-
-				result = true;
 			}
 		}
 
