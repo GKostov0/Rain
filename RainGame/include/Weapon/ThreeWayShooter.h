@@ -13,6 +13,7 @@ namespace rn
 			const sf::Vector2f& localOffset = {0.0f, 0.0f});
 
 		virtual void IncrementLevel(int amount = 1) override;
+		virtual void SetCurrentLevel(int level) override;
 
 	private:
 		virtual void ShooterImpl() override;

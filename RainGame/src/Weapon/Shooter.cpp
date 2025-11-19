@@ -2,6 +2,14 @@
 
 namespace rn
 {
+	Shooter::Shooter(Actor* owner)
+		: _owner{ owner },
+		_currentLevel{ 1 },
+		_maxLevel{ 4 }
+	{
+
+	}
+
 	void Shooter::Shoot()
 	{
 		if (CanShoot() && !IsOnCooldown())
@@ -15,11 +23,8 @@ namespace rn
 		_currentLevel = _currentLevel >= _maxLevel ? _maxLevel : ++_currentLevel;
 	}
 
-	Shooter::Shooter(Actor* owner)
-		: _owner{owner},
-		_currentLevel{1},
-		_maxLevel{4}
+	void Shooter::SetCurrentLevel(int level)
 	{
-
+		_currentLevel = level;
 	}
 }

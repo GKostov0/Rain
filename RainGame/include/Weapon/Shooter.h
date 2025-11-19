@@ -11,13 +11,13 @@ namespace rn
 
 		virtual bool CanShoot() const { return true; }
 		virtual bool IsOnCooldown() const { return false; }
+		virtual void IncrementLevel(int amount = 1);
+		virtual void SetCurrentLevel(int level);
 
 		Actor* GetOwner() const { return _owner; }
 
 		int GetCurrentLevel() const { return _currentLevel; }
 		int GetMaxLevel() const { return _maxLevel; }
-
-		virtual void IncrementLevel(int amount = 1);
 
 	protected:
 		Shooter(Actor* owner);

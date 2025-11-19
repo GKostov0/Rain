@@ -25,6 +25,18 @@ namespace rn
 		_shooterRightTopLevel->IncrementLevel(amount);
 	}
 
+	void ThreeWayShooter::SetCurrentLevel(int level)
+	{
+		Shooter::SetCurrentLevel(level);
+
+		_shooterLeft->SetCurrentLevel(level);
+		_shooterMiddle->SetCurrentLevel(level);
+		_shooterRight->SetCurrentLevel(level);
+
+		_shooterLeftTopLevel->SetCurrentLevel(level);
+		_shooterRightTopLevel->SetCurrentLevel(level);
+	}
+
 	void ThreeWayShooter::ShooterImpl()
 	{
 		_shooterLeft->Shoot();

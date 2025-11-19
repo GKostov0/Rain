@@ -29,6 +29,16 @@ namespace rn
 		_shooter6->IncrementLevel(amount);
 	}
 
+	void FrontalWiper::SetCurrentLevel(int level)
+	{
+		Shooter::SetCurrentLevel(level);
+
+		_shooter1->SetCurrentLevel(level);
+		_shooter2->SetCurrentLevel(level);
+		_shooter3->SetCurrentLevel(level);
+		_shooter4->SetCurrentLevel(level);
+	}
+
 	void FrontalWiper::ShooterImpl()
 	{
 		_shooter1->Shoot();
