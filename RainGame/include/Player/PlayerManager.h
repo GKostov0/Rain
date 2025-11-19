@@ -13,6 +13,8 @@ namespace rn
 		Player* GetPlayer(int playerIndex = 0);
 		const Player* GetPlayer(int playerIndex = 0) const;
 
+		void Reset();
+
 		static PlayerManager& Get();
 
 	protected:

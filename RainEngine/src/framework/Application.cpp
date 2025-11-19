@@ -89,6 +89,8 @@ namespace rn
         if (_pendingWorld && _pendingWorld != _currentWorld)
         {
             _currentWorld = _pendingWorld;
+
+            PhysicsSystem::Get().Cleanup();
             _currentWorld->BeginPlayInternal();
         }
     }

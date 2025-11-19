@@ -54,6 +54,8 @@ namespace rn
 		sf::Color _healthDamagedColor;
 		sf::Color _healthCriticalColor;
 
+		sf::Vector2u _windowSize;
+
 		ImageWidget _playerLifeIcon;
 		ImageWidget _playerScoreIcon;
 

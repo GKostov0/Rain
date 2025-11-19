@@ -30,6 +30,11 @@ namespace rn
 		return nullptr;
 	}
 
+	void PlayerManager::Reset()
+	{
+		_players.clear();
+	}
+
 	PlayerManager& PlayerManager::Get()
 	{
 		if (!_playerManager)

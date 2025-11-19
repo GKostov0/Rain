@@ -19,6 +19,7 @@ namespace rn
 		_healthGoodColor{ 128, 255, 128, 255 },
 		_healthDamagedColor{ 255, 200, 0, 255 },
 		_healthCriticalColor{255, 64, 0, 255},
+		_windowSize{},
 		_playerLifeIcon{ "SpaceShooterRedux/PNG/pickups/playerLife1_blue.png" },
 		_playerScoreIcon{ "SpaceShooterRedux/PNG/Power-ups/star_gold.png" },
 		_criticalThreshold{0.3f},
@@ -42,8 +43,8 @@ namespace rn
 
 	void GameplayHUD::Initialize(const sf::RenderWindow& windowReference)
 	{
-		auto windowSize = windowReference.getSize();
-		_playerHealthGauge.SetWidgetLocation({ 10.0f, windowSize.y - 40.0f });
+		_windowSize = windowReference.getSize();
+		_playerHealthGauge.SetWidgetLocation({ 10.0f, _windowSize.y - 40.0f });
 
 		sf::Vector2f nextWidgetPosition = _playerHealthGauge.GetWidgetLocation();
 
@@ -62,8 +63,10 @@ namespace rn
 		RefreshHealthBar();
 		ConnectPlayerStatus();
 
-		_winLoseText.SetWidgetLocation({ windowSize.x / 2.0f - _winLoseText.GetBound().width / 2.0f, 100.0f });
-		_restartButton.SetWidgetLocation({ windowSize.x / 2.0f - _restartButton.GetBound().width / 2.0f, windowSize.y / 2.0f });
+		_winLoseText.SetTextSize(40);
+		_finalScoreText.SetTextSize(40);
+
+		_restartButton.SetWidgetLocation({ _windowSize.x / 2.0f - _restartButton.GetBound().width / 2.0f, _windowSize.y / 2.0f });
 		_quitButton.SetWidgetLocation(_restartButton.GetWidgetLocation() + sf::Vector2f(0.5f, 50.0f));
 
 		_restartButton.onButtonClicked.BindAction(GetWeakReference(), &GameplayHUD::RestartButtonClicked);
@@ -113,7 +116,13 @@ namespace rn
 		_restartButton.SetVisibility(true);
 		_quitButton.SetVisibility(true);
 
+		int score = PlayerManager::Get().GetPlayer()->GetScore();
+		_finalScoreText.SetString("Score: " + std::to_string(score));
+
 		_winLoseText.SetString(didWin ? "You Win!" : "You Lose!");
+
+		_winLoseText.SetWidgetLocation({ _windowSize.x / 2.0f - _winLoseText.GetBound().width / 2.0f, 100.0f });
+		_finalScoreText.SetWidgetLocation({ _windowSize.x / 2.0f - _finalScoreText.GetBound().width / 2.0f, 200.0f });
 	}
 
 	void GameplayHUD::PlayerHealthUpdated(float amount, float currentHealth, float maxHealth)
