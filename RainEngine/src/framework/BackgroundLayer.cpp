@@ -51,7 +51,13 @@ namespace rn
 
 			if (IsSpriteOffScreen(sprite))
 			{
+				RandomSpriteTexture(sprite);
 				RandomSpriteTransform(sprite);
+
+				float velocityX = RandomRange(_minVelocity.x, _maxVelocity.x);
+				float velocityY = RandomRange(_minVelocity.y, _maxVelocity.y);
+
+				_velocities[i] = sf::Vector2f{ velocityX ,velocityY };
 			}
 		}
 	}
