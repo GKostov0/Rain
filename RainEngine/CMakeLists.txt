@@ -29,6 +29,9 @@ add_library(${RAIN_ENGINE_TARGET_NAME} STATIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/PhysicsSystem.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/PhysicsSystem.cpp
 
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/BackdropActor.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/BackdropActor.cpp
+
     ${CMAKE_CURRENT_SOURCE_DIR}/include/gameplay/GameStage.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/gameplay/GameStage.cpp
 

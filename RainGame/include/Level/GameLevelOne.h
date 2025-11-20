@@ -20,6 +20,8 @@ namespace rn
 
 		void PlayerSpaceshipDestroyed(Actor* destroyedSpaceship);
 
+		void SpawnCosmetics();
+
 		void RestartGame();
 		void GameOver();
 		void QuitGame();

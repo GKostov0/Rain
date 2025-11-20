@@ -66,6 +66,11 @@ namespace rn
 		CenterPivot();
 	}
 
+	void Actor::SetTextureRepeated(bool repeat)
+	{
+		_texture->setRepeated(repeat);
+	}
+
 	void Actor::Render(sf::RenderWindow& window)
 	{
 		if (IsPendingDestroy())
