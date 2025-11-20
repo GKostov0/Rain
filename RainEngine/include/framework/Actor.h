@@ -23,7 +23,7 @@ namespace rn
 		virtual void Tick(float deltaTime);
 		void SetTexture(const std::string& path);
 		void SetTextureRepeated(bool repeat);
-		void Render(sf::RenderWindow& window);
+		virtual void Render(sf::RenderWindow& window);
 
 		void SetActorLocation(const sf::Vector2f& newLocation);
 		void AddActorLocationOffset(const sf::Vector2f& offsetAmount);
