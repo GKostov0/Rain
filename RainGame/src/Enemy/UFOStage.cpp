@@ -3,6 +3,7 @@
 
 #include "Enemy/UFO.h"
 #include "Enemy/UFOStage.h"
+#include "weapon/BulletShooter.h"
 
 namespace rn
 {

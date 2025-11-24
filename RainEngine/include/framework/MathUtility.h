@@ -1,5 +1,5 @@
 #pragma once
-
+#include <cmath>
 #include <SFML/Graphics.hpp>
 
 namespace rn
@@ -29,7 +29,7 @@ namespace rn
 		float length = GetVectorLength<T>(vector);
 
 		if (length == 0.0f) 
-			return sf::Vector2<T>{};
+			return vector;
 
 		ScaleVector(vector, 1.0f / length);
 

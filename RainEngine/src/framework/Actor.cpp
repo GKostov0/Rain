@@ -219,6 +219,7 @@ namespace rn
 		if (_physicsBody)
 		{
 			PhysicsSystem::Get().RemoveListener(_physicsBody);
+			_physicsBody->GetUserData().pointer = reinterpret_cast<uintptr_t>(nullptr);
 			_physicsBody = nullptr;
 		}
 	}

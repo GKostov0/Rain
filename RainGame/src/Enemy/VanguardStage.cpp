@@ -2,6 +2,7 @@
 #include "Enemy/VanguardStage.h"
 
 #include "framework/World.h"
+#include "weapon/BulletShooter.h"
 
 namespace rn
 {

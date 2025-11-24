@@ -24,12 +24,12 @@ namespace rn
 
 	weak<Object> Object::GetWeakReference()
 	{
-		return weak_from_this();
+		return shared_from_this();
 	}
 
 	weak<const Object> Object::GetWeakReference() const
 	{
-		return weak_from_this();
+		return shared_from_this();
 	}
 
 	unsigned int Object::GetNextAvailableID()

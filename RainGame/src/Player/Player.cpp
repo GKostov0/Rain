@@ -1,6 +1,7 @@
 #include "Player/Player.h"
 #include "framework/World.h"
 #include "Player/PlayerSpaceship.h"
+#include "weapon/BulletShooter.h"
 
 namespace rn
 {

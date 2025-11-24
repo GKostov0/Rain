@@ -1,6 +1,7 @@
 #include "Enemy/HexagonStage.h"
 #include "framework/World.h"
 #include "Enemy/Hexagon.h"
+#include "weapon/BulletShooter.h"
 
 namespace rn
 {

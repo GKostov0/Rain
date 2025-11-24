@@ -8,6 +8,8 @@
 #include "framework/MathUtility.h"
 #include "framework/World.h"
 
+#include "weapon/BulletShooter.h"
+
 namespace rn
 {
 	ChaosStage::ChaosStage(World* owner)
