@@ -32,6 +32,7 @@ namespace rn
 	weak<Reward> CreateHealthReward(World* world);
 	weak<Reward> CreateThreeWayShooterReward(World* world);
 	weak<Reward> CreateFrontalWiperReward(World* world);
+	weak<Reward> CreateZigZagRocketReward(World* world);
 	weak<Reward> CreatLifeReward(World* world);
 
 	weak<Reward> CrateReward(World* world, const std::string& texturePath, RewardFunction rewardFunctuion);
@@ -39,5 +40,6 @@ namespace rn
 	void RewardHealth(PlayerSpaceship* player);
 	void RewardThreeWayShooter(PlayerSpaceship* player);
 	void RewardFrontalWiper(PlayerSpaceship* player);
+	void RewardZigZagRocket(PlayerSpaceship* player);
 	void RewardLife(PlayerSpaceship* player);
 }

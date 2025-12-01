@@ -4,6 +4,7 @@
 #include "Weapon/BulletShooter.h"
 #include "Weapon/ThreeWayShooter.h"
 #include "Weapon/FrontalWiper.h"
+#include "Weapon/ZigZagRocket.h"
 
 namespace rn
 {
@@ -16,7 +17,7 @@ namespace rn
 		_invulnerableFlashTimer{0.0f},
 		_invulnerableFlashDirection{1.0f},
 		_isInvulnerable{true},
-		_shooter{ new BulletShooter{this, 0.5f, {50.0f, 0.0f}} }
+		_shooter{ new ZigZagRocket{this, 0.5f, {50.0f, 0.0f}} }
 	{
 		SetTeamID(1);
 		_shooter->SetCurrentLevel(4);

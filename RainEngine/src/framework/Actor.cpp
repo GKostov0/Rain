@@ -23,7 +23,7 @@ namespace rn
 
 	Actor::~Actor()
 	{
-		LOG("Actor Destroyed!");
+		/*LOG("Actor Destroyed!");*/
 	}
 
 	void Actor::BeginPlayInternal()
@@ -172,12 +172,12 @@ namespace rn
 
 	void Actor::OnActorBeginOverlap(Actor* other)
 	{
-		LOG("Begin Overlap!");
+		//LOG("Begin Overlap!");
 	}
 
 	void Actor::OnActorEndOverlap(Actor* other)
 	{
-		LOG("End Overlap!");
+		//LOG("End Overlap!");
 	}
 
 	void Actor::Destroy()

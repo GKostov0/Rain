@@ -11,6 +11,7 @@ namespace rn
 
 		void SetSpeed(float speed);
 		void SetDamage(float damage);
+		void SetZigZag(bool isZigZag);
 
 		virtual void Tick(float deltaTime) override;
 
@@ -27,5 +28,9 @@ namespace rn
 		Actor* _owner;
 		float _speed;
 		float _damage;
+
+		bool _isZigZag;
+		int _zigZagOffset;
+		bool _isZigZagLeft;
 	};
 }

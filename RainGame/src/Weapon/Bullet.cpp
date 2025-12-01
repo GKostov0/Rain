@@ -6,7 +6,10 @@ namespace rn
 		: Actor{ world, texturePath },
 		_owner{ owner }, 
 		_speed{ speed },
-		_damage{ damage }
+		_damage{ damage },
+		_isZigZag{ false },
+		_zigZagOffset{0},
+		_isZigZagLeft{false}
 	{
 		SetTeamID(owner->GetTeamID());
 	}
@@ -19,6 +22,11 @@ namespace rn
 	void Bullet::SetDamage(float damage)
 	{
 		_damage = damage;
+	}
+
+	void Bullet::SetZigZag(bool isZigZag)
+	{
+		_isZigZag = isZigZag;
 	}
 
 	void Bullet::Tick(float deltaTime)
@@ -49,5 +57,16 @@ namespace rn
 	void Bullet::Move(float deltaTime)
 	{
 		AddActorLocationOffset(GetActorForwardDirection() * _speed * deltaTime);
+		
+		if (_isZigZag)
+		{
+			if (++_zigZagOffset > 10)
+			{
+				_zigZagOffset = 0;
+				_isZigZagLeft = !_isZigZagLeft;
+			}
+
+			SetActorRotation(_isZigZagLeft ? 225 : 315);
+		}
 	}
 }

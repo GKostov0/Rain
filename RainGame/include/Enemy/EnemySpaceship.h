@@ -14,7 +14,8 @@ namespace rn
 				CreateHealthReward,
 				CreateThreeWayShooterReward,
 				CreateFrontalWiperReward,
-				CreatLifeReward
+				CreatLifeReward,
+				CreateZigZagRocketReward
 			});
 
 		virtual void Tick(float deltaTime) override;

@@ -10,11 +10,11 @@ namespace rn
 		BulletShooter(Actor* owner, float cooldownTime = 1.0f, const sf::Vector2f& localPositionOffset = {0.0f, 0.0f},
 			float localRotationOffset = 0.0f, const std::string& bulletTexturePath = "SpaceShooterRedux/PNG/Lasers/laserBlue01.png");
 
+		void SetBulletTexturePath(const std::string& newTexturePath);
+		void SetZigZag(bool isZigZag);
+
 		virtual bool IsOnCooldown() const override;
 		virtual void ShooterImpl() override;
-
-		void SetBulletTexturePath(const std::string& newTexturePath);
-
 		virtual void IncrementLevel(int amount = 1) override;
 
 	private:
@@ -24,5 +24,7 @@ namespace rn
 		float _localRotationOffset;
 
 		std::string _bulletTextuePath;
+
+		bool _isZigZag;
 	};
 }

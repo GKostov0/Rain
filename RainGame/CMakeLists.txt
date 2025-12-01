@@ -29,6 +29,9 @@ add_executable(${RAIN_GAME_TARGET_NAME}
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Weapon/FrontalWiper.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Weapon/FrontalWiper.cpp
 
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Weapon/ZigZagRocket.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Weapon/ZigZagRocket.cpp
+
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Weapon/Bullet.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Weapon/Bullet.cpp
 

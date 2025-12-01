@@ -5,6 +5,7 @@
 
 #include "Weapon/ThreeWayShooter.h"
 #include "Weapon/FrontalWiper.h"
+#include "Weapon/ZigZagRocket.h"
 
 namespace rn
 {
@@ -61,6 +62,11 @@ namespace rn
 		return CrateReward(world, "SpaceShooterRedux/PNG/pickups/front_row_shooter_pickup.png", RewardFrontalWiper);
 	}
 
+	weak<Reward> CreateZigZagRocketReward(World* world)
+	{
+		return CrateReward(world, "SpaceShooterRedux/PNG/Lasers/bulletRed01.png", RewardZigZagRocket);
+	}
+
 	weak<Reward> CreatLifeReward(World* world)
 	{
 		return CrateReward(world, "SpaceShooterRedux/PNG/pickups/playerLife1_blue.png", RewardLife);
@@ -95,6 +101,14 @@ namespace rn
 		if (player && !player->IsPendingDestroy())
 		{
 			player->SetShooter(unique<Shooter>{new FrontalWiper{ player, 0.15f, {50.0f, 0.0f} }});
+		}
+	}
+
+	void RewardZigZagRocket(PlayerSpaceship* player)
+	{
+		if (player && !player->IsPendingDestroy())
+		{
+			player->SetShooter(unique<Shooter>{new ZigZagRocket{ player, 0.15f, {50.0f, 0.0f} }});
 		}
 	}
 

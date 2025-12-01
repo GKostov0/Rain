@@ -12,7 +12,8 @@ namespace rn
 		_cooldownTime{ cooldownTime },
 		_localPositionOffset{ localPositionOffset },
 		_localRotationOffset{ localRotationOffset },
-		_bulletTextuePath{ bulletTexturePath }
+		_bulletTextuePath{ bulletTexturePath },
+		_isZigZag{false}
 	{
 
 	}
@@ -27,6 +28,11 @@ namespace rn
 		return true;
 	}
 
+	void BulletShooter::SetZigZag(bool isZigZag)
+	{
+		_isZigZag = isZigZag;
+	}
+
 	void BulletShooter::ShooterImpl()
 	{
 		sf::Vector2f ownerForward = GetOwner()->GetActorForwardDirection();
@@ -34,6 +40,7 @@ namespace rn
 
 		_cooldownClock.restart();
 		weak<Bullet> newBullet = GetOwner()->GetWorld()->SpawnActor<Bullet>(GetOwner(), _bulletTextuePath);
+		newBullet.lock()->SetZigZag(_isZigZag);
 		newBullet.lock()->SetActorLocation(GetOwner()->GetActorLocation() + ownerForward * _localPositionOffset.x + ownerRight * _localPositionOffset.y);
 		newBullet.lock()->SetActorRotation(GetOwner()->GetActorRotation() + _localRotationOffset);
 	}
