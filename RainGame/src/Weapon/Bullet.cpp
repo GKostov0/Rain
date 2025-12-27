@@ -1,5 +1,7 @@
 #include "Weapon/Bullet.h"
 
+#include "framework/MathUtility.h"
+
 namespace rn
 {
 	Bullet::Bullet(World* world, Actor* owner, const std::string& texturePath, float speed, float damage)
@@ -9,7 +11,7 @@ namespace rn
 		_damage{ damage },
 		_isZigZag{ false },
 		_zigZagOffset{0},
-		_isZigZagLeft{false}
+		_isZigZagLeft{RandomRange(0, 1) > 0.5f ? true : false}
 	{
 		SetTeamID(owner->GetTeamID());
 	}
